@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{133B4212-8C0C-41A3-B1FF-6A41BD780337}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fit_Growth_Curves</RootNamespace>
+    <AssemblyName>CurveFitter</AssemblyName>
+    <ApplicationIcon>clipboard.ico</ApplicationIcon>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <ManifestCertificateThumbprint>D3B52286D609CEBA730C5E8ADE5204762C5AE48C</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Fit Growth Curves_1_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>false</GenerateManifests>
+    <SignManifests>false</SignManifests>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <TargetZone>LocalIntranet</TargetZone>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://www.people.fas.harvard.edu/~ndelaney/FitGrowthCurves/</InstallUrl>
+    <SupportUrl>http://www.people.fas.harvard.edu/~ndelaney/FitGrowthCurves/GrowthCurveFitter.htm</SupportUrl>
+    <ProductName>Curve Fitter</ProductName>
+    <PublisherName>Marx Lab</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>InstallFitter.htm</WebPage>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationVersion>5.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Fit_Growth_Curves.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="alglibnet2">
+      <HintPath>bin\alglibnet2.dll</HintPath>
+    </Reference>
+    <Reference Include="MathFunc, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af39242306d6159d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MathFunc.dll</HintPath>
+    </Reference>
+    <Reference Include="MatrixInterf, Version=2.0.5.0, Culture=neutral, PublicKeyToken=1fa71b5ffec10e32, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MatrixInterf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Microsoft.Dynamic.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="ShoArray, Version=2.0.5.0, Culture=neutral, PublicKeyToken=1635376d5e62ab5f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ShoArray.dll</HintPath>
+    </Reference>
+    <Reference Include="ShoViz, Version=2.0.5.0, Culture=neutral, PublicKeyToken=14eb30934789ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ShoViz.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ZedGraph">
+      <HintPath>bin\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BasicPlateMap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ColorMapPlate.cs" />
+    <Compile Include="CurveFitter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CurveFitter.Designer.cs">
+      <DependentUpon>CurveFitter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HandleTreatmentPlots.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NumRecipes.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectablePlateMap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SelectablePlateMap.Designer.cs">
+      <DependentUpon>SelectablePlateMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sensitivities.cs" />
+    <Compile Include="SensitivityAnalysis.cs" />
+    <EmbeddedResource Include="BasicPlateMap.resx">
+      <DependentUpon>BasicPlateMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CurveFitter.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CurveFitter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="SelectablePlateMap.resx">
+      <DependentUpon>SelectablePlateMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="clipboard.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="IronPython">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="MathFunc">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.Office.Interop.Excel">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.Scripting">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.Scripting.Metadata">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.Vbe.Interop">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="office">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="ShoArray">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="stdole">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GrowthCurveLibrary\GrowthCurveLibrary.csproj">
+      <Project>{BAA4F5F2-EDCA-4CF4-96D4-D076ABDA1459}</Project>
+      <Name>GrowthCurveLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MatrixArrayPlot\MatrixArrayPlot\MatrixArrayPlot.csproj">
+      <Project>{186DE3C8-1C26-4C97-9C83-9F5C74A8860C}</Project>
+      <Name>MatrixArrayPlot</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

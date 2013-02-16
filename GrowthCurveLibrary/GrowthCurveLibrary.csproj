@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BAA4F5F2-EDCA-4CF4-96D4-D076ABDA1459}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GrowthCurveLibrary</RootNamespace>
+    <AssemblyName>GrowthCurveLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="alglibnet2">
+      <HintPath>..\GrowthCurveFitterWPF\alglibnet2.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
+    <Reference Include="MathFunc, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af39242306d6159d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MathFunc.dll</HintPath>
+    </Reference>
+    <Reference Include="MatrixInterf, Version=2.0.5.0, Culture=neutral, PublicKeyToken=1fa71b5ffec10e32, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MatrixInterf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Solver.Foundation">
+      <HintPath>..\Fit Growth Curves\bin\Microsoft.Solver.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Office, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ShoArray, Version=2.0.5.0, Culture=neutral, PublicKeyToken=1635376d5e62ab5f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ShoArray.dll</HintPath>
+    </Reference>
+    <Reference Include="ShoOptimizer">
+      <HintPath>.\ShoOptimizer.dll</HintPath>
+    </Reference>
+    <Reference Include="Stats">
+      <HintPath>..\Stats.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Workflow.ComponentModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ModelsAndFitting\AbstractFitter.cs" />
+    <Compile Include="ModelsAndFitting\OffSetExponential.cs" />
+    <Compile Include="ExportData.cs" />
+    <Compile Include="ModelsAndFitting\Fitters.cs" />
+    <Compile Include="ModelsAndFitting\GroupFitter.cs" />
+    <Compile Include="GrowthCurve.cs" />
+    <Compile Include="GrowthCurveCollection.cs" />
+    <Compile Include="ModelsAndFitting\IAbstractFitter.cs" />
+    <Compile Include="ImportData.cs" />
+    <Compile Include="ModelsAndFitting\LogisticModel.cs" />
+    <Compile Include="ModelsAndFitting\MixtureModel.cs" />
+    <Compile Include="ModelsAndFitting\OffSetExponential_Old.cs" />
+    <Compile Include="ModelsAndFitting\OutlierDetector.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsAndFitting\QuadraticLinearRegression.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
