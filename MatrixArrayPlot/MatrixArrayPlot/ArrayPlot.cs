@@ -33,7 +33,7 @@ namespace MatrixArrayPlot
         public bool DrawColLabels = true;
         public void SwitchToRainbow()
         {
-            CF = new ColorFunction(ColorMaps.pseudorainbowFn);
+            CF = new ColorFunction(ColorMaps.rainbowScheme);
             RecreateImage();
             OnNewGridLoad();
         }
@@ -61,7 +61,7 @@ namespace MatrixArrayPlot
            /// base.OnSizeChanged(e);
         }
         protected MatrixForPlotting Matrix;
-        protected ColorFunction CF = new ColorFunction(ColorMaps.BlueToRedMap);
+        protected ColorFunction CF = new ColorFunction(ColorMaps.BlueRedScheme);
         public Color GetColor(double value, double min, double max)
         {
             return CF(value, min, max);
