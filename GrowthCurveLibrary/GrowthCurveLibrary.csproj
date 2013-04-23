@@ -39,9 +39,13 @@
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Mono|AnyCPU'">
+    <OutputPath>bin\Mono\</OutputPath>
+    <DefineConstants>MONO</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="alglibnet2">
-      <HintPath>..\GrowthCurveFitterWPF\alglibnet2.dll</HintPath>
+      <HintPath>..\NeededAssemblies\alglibnet2.dll</HintPath>
     </Reference>
     <Reference Include="IronPython, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
     <Reference Include="MathFunc, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af39242306d6159d, processorArchitecture=MSIL">
@@ -58,7 +62,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Solver.Foundation">
-      <HintPath>..\Fit Growth Curves\bin\Microsoft.Solver.Foundation.dll</HintPath>
+      <HintPath>..\NeededAssemblies\Microsoft.Solver.Foundation.DLL</HintPath>
     </Reference>
     <Reference Include="Office, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -69,10 +73,10 @@
       <HintPath>..\ShoArray.dll</HintPath>
     </Reference>
     <Reference Include="ShoOptimizer">
-      <HintPath>.\ShoOptimizer.dll</HintPath>
+      <HintPath>..\NeededAssemblies\ShoOptimizer.DLL</HintPath>
     </Reference>
     <Reference Include="Stats">
-      <HintPath>..\Stats.dll</HintPath>
+      <HintPath>..\NeededAssemblies\Stats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

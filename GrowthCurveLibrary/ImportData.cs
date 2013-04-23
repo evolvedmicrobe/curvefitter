@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-#if !NOCOM
+#if !MONO
 using Microsoft.Office.Interop.Excel;
 #else
-using ExcelLibrary;
-using ExcelLibrary.SpreadSheet;
+//using ExcelLibrary;
+//using ExcelLibrary.SpreadSheet;
 #endif
 using System.Collections;
 using System.Linq;
@@ -90,13 +90,14 @@ namespace GrowthCurveLibrary
             }
             exportData();
         }
-#if !NOCOM
+#if !MONO
         /// <summary>
         /// Converts a directory of excel data into a flat text csv file
         /// </summary>
         /// <param name="FileLocation"></param>
         public static void GetExcelData(string FileLocation)
         {
+
             //ChangeTo48WellPlates();
            // SetIntToWell();
             //first to create an array of values, I know there will be 48 columns in the second one,
@@ -290,70 +291,70 @@ namespace GrowthCurveLibrary
             }
         }
 #else
-        public static void GetExcelDataNoCom(string FileLocation)
-        {
-            //ChangeTo48WellPlates();
-            // SetIntToWell();
-            //first to create an array of values, I know there will be 48 columns in the second one,
-            //and for now I am going to assume we will have 200 datapoints, which we will not!
-            Directory = FileLocation;
-            acTimeValues = new List<DateTime>();
-            absDATA = new List<double[]>();//must initialize this to the plate size
-            DirectoryInfo DI = new DirectoryInfo(FileLocation);
-            try
-            {
-                foreach (FileInfo FI in DI.GetFiles())
-                {
-                    if (FI.Extension == ".xls")
-                    {
+        //public static void GetExcelDataNoCom(string FileLocation)
+        //{
+        //    //ChangeTo48WellPlates();
+        //    // SetIntToWell();
+        //    //first to create an array of values, I know there will be 48 columns in the second one,
+        //    //and for now I am going to assume we will have 200 datapoints, which we will not!
+        //    Directory = FileLocation;
+        //    acTimeValues = new List<DateTime>();
+        //    absDATA = new List<double[]>();//must initialize this to the plate size
+        //    DirectoryInfo DI = new DirectoryInfo(FileLocation);
+        //    try
+        //    {
+        //        foreach (FileInfo FI in DI.GetFiles())
+        //        {
+        //            if (FI.Extension == ".xls")
+        //            {
                         
-                        var FO=File.OpenRead(FI.FullName);
-                        Workbook workBook = Workbook.Load(FO);
-                        Worksheet sheet = (Worksheet)workBook.Worksheets[1];
-                        int numRows = sheet.Cells.LastRowIndex;
-                        int plateSize = numRows;
-                        double[] newData = new double[plateSize];
-                        for (int rowIndex = sheet.Cells.FirstRowIndex; rowIndex < numRows; rowIndex++)
-                        {
-                            Row r = sheet.Cells.GetRow(rowIndex);
-                            var Cell = r.GetCell(5);
-                            double value = (double)Cell.Value;
-                            newData[rowIndex] = value;
-                        }
-                        absDATA.Add(newData);
-                        ///NEW CODE ADDED BELOW
-                        string timeline = "";
-                        sheet = (Worksheet)workBook.Worksheets[3];
-                        numRows = sheet.Cells.LastRowIndex;
-                        DateTime testTime = DateTime.Now;
-                        DateTime TIME = testTime;
-                        for (int rowIndex = sheet.Cells.FirstRowIndex; rowIndex < numRows; rowIndex++)
-                        {
-                            Row r = sheet.Cells.GetRow(rowIndex);
+        //                var FO=File.OpenRead(FI.FullName);
+        //                Workbook workBook = Workbook.Load(FO);
+        //                Worksheet sheet = (Worksheet)workBook.Worksheets[1];
+        //                int numRows = sheet.Cells.LastRowIndex;
+        //                int plateSize = numRows;
+        //                double[] newData = new double[plateSize];
+        //                for (int rowIndex = sheet.Cells.FirstRowIndex; rowIndex < numRows; rowIndex++)
+        //                {
+        //                    Row r = sheet.Cells.GetRow(rowIndex);
+        //                    var Cell = r.GetCell(5);
+        //                    double value = (double)Cell.Value;
+        //                    newData[rowIndex] = value;
+        //                }
+        //                absDATA.Add(newData);
+        //                ///NEW CODE ADDED BELOW
+        //                string timeline = "";
+        //                sheet = (Worksheet)workBook.Worksheets[3];
+        //                numRows = sheet.Cells.LastRowIndex;
+        //                DateTime testTime = DateTime.Now;
+        //                DateTime TIME = testTime;
+        //                for (int rowIndex = sheet.Cells.FirstRowIndex; rowIndex < numRows; rowIndex++)
+        //                {
+        //                    Row r = sheet.Cells.GetRow(rowIndex);
 
-                            timeline = (string)r.GetCell(0).Value.ToString();
-                            if (timeline != null && timeline.StartsWith("Measured on ..."))
-                            {
-                                timeline = timeline.Remove(0, 36);
-                                TIME = Convert.ToDateTime(timeline);
-                                break;
-                            }
-                        }
-                        if (TIME == testTime) throw new Exception("No time found in file");
-                        acTimeValues.Add(TIME);
+        //                    timeline = (string)r.GetCell(0).Value.ToString();
+        //                    if (timeline != null && timeline.StartsWith("Measured on ..."))
+        //                    {
+        //                        timeline = timeline.Remove(0, 36);
+        //                        TIME = Convert.ToDateTime(timeline);
+        //                        break;
+        //                    }
+        //                }
+        //                if (TIME == testTime) throw new Exception("No time found in file");
+        //                acTimeValues.Add(TIME);
 
-                    }
-                }
-                exportData();
-            }
-            catch (Exception thrown)
-            {
-                //Exception ex = new Exception("File " + FI.Name + " is screwed" ,thrown);
-                //throw ex;
-                throw thrown;
-            }
+        //            }
+        //        }
+        //        exportData();
+        //    }
+        //    catch (Exception thrown)
+        //    {
+        //        //Exception ex = new Exception("File " + FI.Name + " is screwed" ,thrown);
+        //        //throw ex;
+        //        throw thrown;
+        //    }
 
-        }
+        //}
 #endif
         private static void SetIntToWell()
         {

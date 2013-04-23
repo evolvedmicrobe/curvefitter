@@ -7,7 +7,7 @@ using ShoNS.Optimizer;
 using ShoNS.Numerics;
 using ShoNS.Array;
 using ShoNS.MathFunc;
-//using MicrosoftResearch.Infer.Maths;
+
 namespace GrowthCurveLibrary
 {
     /// <summary>

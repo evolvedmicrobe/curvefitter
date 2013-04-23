@@ -997,6 +997,7 @@ namespace Fit_Growth_Curves
         }
         private void openDirectoryWithExcelDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
+#if !MONO
             this.Cursor = Cursors.WaitCursor;
             try
             {
@@ -1023,6 +1024,9 @@ namespace Fit_Growth_Curves
                 this.Cursor = Cursors.Default;
                 MessageBox.Show("Could not load the data, the error was:\n\n" + thrown.Message);
             }
+#else
+            MessageBox.Show("Excel files can only be accessed from the windows version");
+#endif
         }
         private void btnDelete2ndPoint_Click(object sender, EventArgs e)
         {
