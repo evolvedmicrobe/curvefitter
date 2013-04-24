@@ -6,7 +6,6 @@ D:\Dropbox\Software\CurveFitter\MatrixArrayPlot\MatrixArrayPlot\bin\Mono\MatrixA
 D:\Dropbox\Software\CurveFitter\MatrixArrayPlot\MatrixArrayPlot\bin\Mono\GrowthCurveLibrary.dll
 D:\Dropbox\Software\CurveFitter\MatrixArrayPlot\MatrixArrayPlot\bin\Mono\ShoOptimizer.dll
 D:\Dropbox\Software\CurveFitter\MatrixArrayPlot\MatrixArrayPlot\bin\Mono\alglibnet2.dll
-D:\Dropbox\Software\CurveFitter\MatrixArrayPlot\MatrixArrayPlot\bin\Mono\Stats.dll
 D:\Dropbox\Software\CurveFitter\MatrixArrayPlot\MatrixArrayPlot\bin\Mono\Microsoft.Solver.Foundation.dll
 D:\Dropbox\Software\CurveFitter\MatrixArrayPlot\MatrixArrayPlot\obj\Mono\MatrixArrayPlot.csprojResolveAssemblyReference.cache
 D:\Dropbox\Software\CurveFitter\MatrixArrayPlot\MatrixArrayPlot\obj\Mono\MatrixArrayPlot.dll

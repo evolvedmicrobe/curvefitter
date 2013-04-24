@@ -223,7 +223,10 @@ namespace Fit_Growth_Curves
             }
             else if (rbtnRobustGRvEXPGR.Checked)
             {
+                #if !MONO
                 RemakeTreatmentGraphWith2(x => new PointPair(x.MixtureErrorModel.GrowthRate, x.ExpFit.GrowthRate), "Robust  vs. L2 Growth Rate");
+
+#endif
             }
             else
             {
@@ -238,10 +241,12 @@ namespace Fit_Growth_Curves
                 {
                     valueGetter = (GrowthCurve x) => x.QuadModel.GrowthRateAtValue(0.12);
                 }
+#if !MONO
                 else if (rbtnMixtureModelGR.Checked)
                 {
                     valueGetter = (GrowthCurve x) => x.MixtureErrorModel.GrowthRate;
                 }
+#endif
                 else if (rbtnGroupsOffSetGrowthRate.Checked)
                 {
                     valueGetter = (x) => x.OffSetExp.GrowthRate;

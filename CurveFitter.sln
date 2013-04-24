@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixArrayPlot", "MatrixAr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrowthCurveLibrary", "GrowthCurveLibrary\GrowthCurveLibrary.csproj", "{BAA4F5F2-EDCA-4CF4-96D4-D076ABDA1459}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurveFitterMonoGUI", "CurveFitterMonoGUI\CurveFitterMonoGUI.csproj", "{DF130328-0192-4B52-99DE-0C06D2FF9D88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,21 @@ Global
 		{BAA4F5F2-EDCA-4CF4-96D4-D076ABDA1459}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{BAA4F5F2-EDCA-4CF4-96D4-D076ABDA1459}.Release|x86.ActiveCfg = Release|Any CPU
 		{BAA4F5F2-EDCA-4CF4-96D4-D076ABDA1459}.Release|x86.Build.0 = Release|Any CPU
+		{DF130328-0192-4B52-99DE-0C06D2FF9D88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF130328-0192-4B52-99DE-0C06D2FF9D88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF130328-0192-4B52-99DE-0C06D2FF9D88}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DF130328-0192-4B52-99DE-0C06D2FF9D88}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DF130328-0192-4B52-99DE-0C06D2FF9D88}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DF130328-0192-4B52-99DE-0C06D2FF9D88}.Mono|Any CPU.ActiveCfg = Release|Any CPU
+		{DF130328-0192-4B52-99DE-0C06D2FF9D88}.Mono|Any CPU.Build.0 = Release|Any CPU
+		{DF130328-0192-4B52-99DE-0C06D2FF9D88}.Mono|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DF130328-0192-4B52-99DE-0C06D2FF9D88}.Mono|Mixed Platforms.Build.0 = Release|Any CPU
+		{DF130328-0192-4B52-99DE-0C06D2FF9D88}.Mono|x86.ActiveCfg = Release|Any CPU
+		{DF130328-0192-4B52-99DE-0C06D2FF9D88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF130328-0192-4B52-99DE-0C06D2FF9D88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF130328-0192-4B52-99DE-0C06D2FF9D88}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DF130328-0192-4B52-99DE-0C06D2FF9D88}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DF130328-0192-4B52-99DE-0C06D2FF9D88}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

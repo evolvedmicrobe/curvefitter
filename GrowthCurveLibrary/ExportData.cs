@@ -63,8 +63,10 @@ namespace GrowthCurveLibrary
                 new OutputColumn("GroupFitGrowth",x=>x.GroupFitGrowthRate),
                 new OutputColumn("GroupFitIntercept",x=>x.GroupFitInitPop),
                 new OutputColumn("TreatmentGroup",(x)=>x.Population),
+#if !MONO
                 new OutputColumn("RobustGR",(x)=>x.MixtureErrorModel.GrowthRate),
                 new OutputColumn("RobustIntercept",(x)=>x.MixtureErrorModel.InitialPopSize)
+#endif
                 };
        
         public static void ExportMatlabData(string FullFileName, GrowthCurveCollection GCC)

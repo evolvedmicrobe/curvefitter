@@ -86,6 +86,7 @@ namespace GrowthCurveLibrary
                 else { GC.RemoveSecondPointAsBlank(); }               
             }    
         }
+#if !MONO
         public void CallOutliers()
         {
             foreach (var gc in this)
@@ -93,6 +94,7 @@ namespace GrowthCurveLibrary
                 OutlierDetector.LinearModelOutlierDetector(gc);
             }
         }
+#endif
         public string __repr__()
         {
             if (Name != "")

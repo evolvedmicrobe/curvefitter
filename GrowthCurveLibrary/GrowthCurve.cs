@@ -108,8 +108,11 @@ namespace GrowthCurveLibrary
         public LinearFit LinFit;
         public ExponentialFit ExpFit;
         public OffSetExponentialFit OffSetExp;
+#if !MONO
         public MixtureErrorModelClass MixtureErrorModel;
+
         public QuadraticLinearRegression QuadModel;
+#endif
         public LogisticModel LogisticModel;
 
         public MaximumGrowthRate MaxGrowthRate;
@@ -429,7 +432,9 @@ namespace GrowthCurveLibrary
                     {
                         this.OffSetExp = null;
                     }
+#if !MONO
                     QuadModel = new QuadraticLinearRegression(XtoFit, YtoFit);
+                    #endif
                 }
                 
                 //Now Set the Growth Rate
@@ -442,6 +447,8 @@ namespace GrowthCurveLibrary
                 SetNoFit();
             }
         }
+        #if !MONO
+                    
         public void CallOutliers()
         {
             if (this.ExpModelFitted)
@@ -468,6 +475,7 @@ namespace GrowthCurveLibrary
                 SetNoFit("No Outlier Detection Possible Without Exp Fit");
             }
         }
+#endif
         public void GetResiduals(bool JustFittedValues, out List<double> Times, out List<double> Residuals)
         {
             var TimesToUse = this.TimeValues_As_Double;

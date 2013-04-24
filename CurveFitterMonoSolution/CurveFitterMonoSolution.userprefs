@@ -1,6 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Mono" ActiveRuntime="Mono 3.0.6" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="d:\Dropbox\Software\CurveFitter\GrowthCurveLibrary\ImportData.cs">
+    <Files>
+      <File FileName="d:\Dropbox\Software\CurveFitter\GrowthCurveLibrary\ImportData.cs" Line="25" Column="39" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

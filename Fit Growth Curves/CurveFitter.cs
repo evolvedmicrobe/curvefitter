@@ -232,10 +232,12 @@ namespace Fit_Growth_Curves
                 double Rate = Math.Log(2)/toList.GrowthRate.GrowthRate;
                 lstData.Items.Add("Growth Rate: " + toList.GrowthRate.GrowthRate.ToString("n3"));
                 lstData.Items.Add("Linear Fit: " + toList.LinFit.Slope.ToString("g4"));
+#if !MONO
                 if ((bool)(toList.MixtureErrorModel != null))
                 {
                     lstData.Items.Add("Robust GR: "+toList.MixtureErrorModel.GrowthRate.ToString("n3"));
                 }
+#endif
                 lstData.Items.Add("Fitted Method: " + toList.GrowthRate.FitterUsed.ToString());
                 lstData.Items.Add("R2= " + toList.GrowthRate.R2.ToString("n4"));
                 lstData.Items.Add("RMSE = " + toList.GrowthRate.RMSE.ToString("e3"));
@@ -390,6 +392,7 @@ namespace Fit_Growth_Curves
                            li.Line.Width = (float)3.0;
                         }
                     }
+                    #if !MONO
                     if (toPlot.MixtureErrorModel != null && chkShowRobustFit.Checked)
                     {
                         double[] x2, y2;
@@ -401,6 +404,7 @@ namespace Fit_Growth_Curves
                             li.Line.Width = (float)2.0;
                         }
                     }
+#endif
                     if ((toPlot.LogisticModel != null) && toPlot.LogisticModel.SuccessfulFit)
                     {
                         double[] x2, y2;
@@ -772,10 +776,13 @@ namespace Fit_Growth_Curves
             {
                 curPlateValueFunction = new PlateHeatMap.GrowthCurveDoubleValueGetter((x) => x.GrowthRate.GrowthRate);
             }
+
+                    
             else if (sender == rbtnMixtureGrowthRate)
             {
                 curPlateValueFunction = (x) => x.MixtureErrorModel.GrowthRate;
             }
+
             else if (sender == rbtnOutlierNumber)
             {
                 curPlateValueFunction = (x) => x.OutlierXValues.Count();
@@ -920,7 +927,14 @@ namespace Fit_Growth_Curves
                     }
                     catch (Exception thrown)
                     {
-                        MessageBox.Show("Failed to change range for : " + GR.ToString() + "\nRecommend you shut down\n\n" + thrown.Message);
+                        Exception e2 = thrown;
+                        StringBuilder errror = new StringBuilder();
+                        while (e2.InnerException != null)
+                        {
+                            errror.Append(e2.InnerException.Message);
+                            e2 = e2.InnerException;
+                        }
+                        MessageBox.Show("Failed to change range for : " + GR.ToString() + "\nRecommend you force kill, this message will likely reappear for each well\n\n" + thrown.Message+"\nMore Details:"+errror.ToString());
                     }
                 });
 
@@ -1475,6 +1489,8 @@ namespace Fit_Growth_Curves
         }
         private void btnCallOutliers_Click(object sender, EventArgs e)
         {
+            #if !MONO
+                    
             //BayesianOutlierDetector bod = new BayesianOutlierDetector();
 
             //MixtureErrorModel mem = new MixtureErrorModel(GCC[0]);
@@ -1492,6 +1508,9 @@ namespace Fit_Growth_Curves
                 MessageBox.Show("Error Calling Outliers:\n"+thrown.Message);
             }
             finally { Cursor = Cursors.Default; }
+#else
+            MessageBox.Show("Mixture model not available on Linux");
+#endif
         }
         private void PickleGCC()
         {

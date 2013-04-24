@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.SolverFoundation;
-using ShoNS.Optimizer;
-using ShoNS.Numerics;
+//using ShoNS.Optimizer;
+//using ShoNS.Numerics;
 
 
 namespace GrowthCurveLibrary
@@ -12,13 +11,8 @@ namespace GrowthCurveLibrary
     [Serializable]
     public class OffSetExponentialFit:AbstractFitter
     {
-        //QuasiNewton QN = new QuasiNewton();
         private double CParamGuess = -0.0002;
-        //public double Tolerance
-        //{
-        //    get { return QN.Tolerance; }
-        //    set { QN.Tolerance = value; }
-        //}
+
         enum ParametersIndex : int { P0Index = 0, rIndex = 1,OffSetIndex=2 };
         public double GrowthRate
         {
@@ -128,34 +122,12 @@ namespace GrowthCurveLibrary
             }
             
         }
-        public QuasiNewtonSolution results;
+       
         protected override void FitModel()
         {
 
             FitModelAlgLib();
-            //double curR2 = calculateR2();
-            ////TestGradient();
-            ////QN.MaxIterations = 500;
-            ////QN.Tolerance = 1e-8;
-            //results = QN.MinimizeDetail(new DiffFunc(GetDerivatives), CreateInitialParameterGuess());
-            //if (results.quality != Microsoft.SolverFoundation.Solvers.CompactQuasiNewtonSolutionQuality.LocalOptima)
-            //{
-            //    Console.WriteLine(results.quality.ToString());
-            //    this.SuccessfulFit = false;
-            //    pParameters = new double[] { Double.NaN, Double.NaN, Double.NaN };
-
-            //    //throw new Exception("Problem in Data Fitting!");
-            //}
-            //else
-            //{
-            //    pParameters = results.solution;
-            //    ypred = null;
-            //    double[] QNS = new double[3];
-            //    double newR2 = calculateR2();
-            //    double dif = newR2 - curR2;
-            //    dif += 1.0;
-            //    SuccessfulFit = true;
-            //}
+       
         }
         protected void FitModelAlgLib()
         {
