@@ -3,3 +3,10 @@
 *.pdb
 *.xml
 */obj/*
+*/bin/*
+!alglibnet2.dll
+!Microsoft.Solver.Foundation.DLL
+!ShoArray.dll
+!ShoOptimizer.DLL
+!Stats.dll
+!ZedGraph.DLL
