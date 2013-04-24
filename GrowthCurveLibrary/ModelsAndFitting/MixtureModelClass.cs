@@ -14,7 +14,7 @@ namespace GrowthCurveLibrary
     /// Mixture model for the error, assumes the mean of the error is zero for both components
     /// </summary>
     [Serializable]
-    public class MixtureErrorModel 
+    public class MixtureErrorModelClass
     {
 
         enum ParametersIndex : int { P0Index = 0, rIndex = 1 };
@@ -41,7 +41,7 @@ namespace GrowthCurveLibrary
         double curVal=double.MaxValue;
         int MaxIterations = 1000;
         double TerminationTolerance = 1e-6;
-        public MixtureErrorModel(GrowthCurve gc, bool CallOutliersAfter=true)
+        public MixtureErrorModelClass(GrowthCurve gc, bool CallOutliersAfter=true)
         {
             xs = gc.FittedXValues;
             ys = gc.FittedYValues;

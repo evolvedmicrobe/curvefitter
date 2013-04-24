@@ -108,7 +108,7 @@ namespace GrowthCurveLibrary
         public LinearFit LinFit;
         public ExponentialFit ExpFit;
         public OffSetExponentialFit OffSetExp;
-        public MixtureErrorModel MixtureErrorModel;
+        public MixtureErrorModelClass MixtureErrorModel;
         public QuadraticLinearRegression QuadModel;
         public LogisticModel LogisticModel;
 
@@ -448,7 +448,7 @@ namespace GrowthCurveLibrary
             {
                 try
                 {
-                    this.MixtureErrorModel = new MixtureErrorModel(this);
+                    this.MixtureErrorModel = new MixtureErrorModelClass(this);
                     List<double> outliers = MixtureErrorModel.XValuesOfOutliers();
                     var q = from x in this where outliers.Contains(x.ODValue) select x;
                     q.ToList().ForEach(x => x.OutlierFlag = true);

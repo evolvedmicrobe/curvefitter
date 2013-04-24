@@ -232,7 +232,7 @@ namespace Fit_Growth_Curves
                 double Rate = Math.Log(2)/toList.GrowthRate.GrowthRate;
                 lstData.Items.Add("Growth Rate: " + toList.GrowthRate.GrowthRate.ToString("n3"));
                 lstData.Items.Add("Linear Fit: " + toList.LinFit.Slope.ToString("g4"));
-                if (toList.MixtureErrorModel != null)
+                if ((bool)(toList.MixtureErrorModel != null))
                 {
                     lstData.Items.Add("Robust GR: "+toList.MixtureErrorModel.GrowthRate.ToString("n3"));
                 }
@@ -401,7 +401,7 @@ namespace Fit_Growth_Curves
                             li.Line.Width = (float)2.0;
                         }
                     }
-                    if (toPlot.LogisticModel != null && toPlot.LogisticModel.SuccessfulFit)
+                    if ((toPlot.LogisticModel != null) && toPlot.LogisticModel.SuccessfulFit)
                     {
                         double[] x2, y2;
                         toPlot.LogisticModel.GenerateFitLine(0, .1, xmax, out x2, out y2);
