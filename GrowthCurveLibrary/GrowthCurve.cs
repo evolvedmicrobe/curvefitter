@@ -82,7 +82,11 @@ namespace GrowthCurveLibrary
             public double[] xvals;
             public double[] yvals;
         }
-        
+        public LinearFit LinFit;
+        public ExponentialFit ExpFit;
+        public OffSetExponentialFit OffSetExp;
+
+#if !MONO
         //Different models fit
         public GroupFitter GroupFit;
         private GroupFitter.ExpParameters getGroupFitParameters()
@@ -105,10 +109,7 @@ namespace GrowthCurveLibrary
             get { return getGroupFitParameters().InitPop; }
         }
 
-        public LinearFit LinFit;
-        public ExponentialFit ExpFit;
-        public OffSetExponentialFit OffSetExp;
-#if !MONO
+       
         public MixtureErrorModelClass MixtureErrorModel;
 
         public QuadraticLinearRegression QuadModel;

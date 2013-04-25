@@ -60,10 +60,10 @@ namespace GrowthCurveLibrary
                 new OutputColumn("HoursUntilOD0.02", (x) => x.HoursTillODReached(.02)),
                 new OutputColumn("DifinL1ErrorLinvExp",(x)=>x.LinFit.CalculateAbsErrorAfterExpTransform()-x.ExpFit.AbsError),
                 new OutputColumn("DifinL2ErrorLinvExp",(x)=>x.LinFit.CalculateL2ErrorAfterExpTransform()-x.ExpFit.calculateResidualSumofSquares()),
-                new OutputColumn("GroupFitGrowth",x=>x.GroupFitGrowthRate),
-                new OutputColumn("GroupFitIntercept",x=>x.GroupFitInitPop),
                 new OutputColumn("TreatmentGroup",(x)=>x.Population),
 #if !MONO
+                new OutputColumn("GroupFitGrowth",x=>x.GroupFitGrowthRate),
+                new OutputColumn("GroupFitIntercept",x=>x.GroupFitInitPop),
                 new OutputColumn("RobustGR",(x)=>x.MixtureErrorModel.GrowthRate),
                 new OutputColumn("RobustIntercept",(x)=>x.MixtureErrorModel.InitialPopSize)
 #endif

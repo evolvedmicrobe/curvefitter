@@ -23,7 +23,6 @@ namespace Fit_Growth_Curves
     public partial class CurveFitter : Form
     {
         public const double BAD_DATA_VALUE = -999;
-        GroupFitter GroupFit;
         double ChartNLastFitXValue= BAD_DATA_VALUE;
         double ChartPickDataLastFitXValue = BAD_DATA_VALUE;
         PlateHeatMap.PlateType CurrentPlateType = PlateHeatMap.PlateType.None;
