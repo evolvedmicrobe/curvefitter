@@ -123,6 +123,9 @@ namespace GrowthCurveLibrary
             get { return pGrowthRate; }
             set { pGrowthRate = value; }
         }
+        /// <summary>
+        /// Indicate that the data fit has been manually selected.
+        /// </summary>
         public void SetHandPicked()
         {
             if(!String.IsNullOrEmpty(pGrowthRate.Notes))
@@ -130,6 +133,9 @@ namespace GrowthCurveLibrary
                 pGrowthRate.Notes="Hand Picked Data";
             }
         }
+        /// <summary>
+        /// Start time of OD readings.
+        /// </summary>
         public DateTime BaseTime;
         public List<FitPoint> FittedValues 
         {
@@ -218,7 +224,9 @@ namespace GrowthCurveLibrary
         {
             return "Growth Curve: " + DataSetName; 
         }
-
+        /// <summary>
+        /// Name of the dataset (usually a well name).
+        /// </summary>
         public string DataSetName { get; set; }
         /// <summary>
         /// Holds the doubling time between each pair of points, poorly named variable 

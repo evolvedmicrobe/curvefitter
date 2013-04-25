@@ -9,6 +9,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace GrowthCurveLibrary
 {
+    /// <summary>
+    /// A collection of Growth Curves, 
+    /// </summary>
     [Serializable]
     public class GrowthCurveCollection :List<GrowthCurve> 
     {

@@ -1409,6 +1409,8 @@ namespace Fit_Growth_Curves
             Process notePad = new Process();
             notePad.StartInfo.FileName = start;
             notePad.Start();
+#else
+            MessageBox.Show("The Sho console is only available on windows");
 #endif
             }
 

@@ -2,20 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.SolverFoundation;
 using ShoNS.Optimizer;
 using ShoNS.Numerics;
 
 namespace GrowthCurveLibrary
 {
+    /// <summary>
+    /// A class to fit the Logistic Growth Model
+    /// </summary>
     [Serializable]
     public class LogisticModel : AbstractFitter, IAbstractFitter
     {
         enum ParametersIndex : int { P0Index = 0, rIndex = 1,Carrying=2 };
+        /// <summary>
+        /// Growth Rate in Model.
+        /// </summary>
         public double GrowthRate
         {
             get { return pParameters[(int)ParametersIndex.rIndex]; }
         }
+        /// <summary>
+        /// Initial Population Size
+        /// </summary>
         public double InitialPopSize
         {
             get { return pParameters[(int)ParametersIndex.P0Index]; }

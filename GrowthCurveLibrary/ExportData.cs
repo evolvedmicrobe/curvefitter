@@ -40,6 +40,9 @@ namespace GrowthCurveLibrary
                 return "NA";
             }
         }
+        /// <summary>
+        /// Collection of columns to output with various summary statistics.
+        /// </summary>
         public static List<OutputColumn> OutputColumnCollection = new List<OutputColumn>() {
                 new OutputColumn("Name", (x) => x.DataSetName),
                 new OutputColumn("Doubling Time(Hrs)", (x) => x.GrowthRate.DoublingTime),              
@@ -68,7 +71,12 @@ namespace GrowthCurveLibrary
                 new OutputColumn("RobustIntercept",(x)=>x.MixtureErrorModel.InitialPopSize)
 #endif
                 };
-       
+       /// <summary>
+       /// Exports data as a CSV file with the first column being the date/time encoded as a double.
+       /// Useful for loading data in Matlab.
+       /// </summary>
+       /// <param name="FullFileName"></param>
+       /// <param name="GCC"></param>
         public static void ExportMatlabData(string FullFileName, GrowthCurveCollection GCC)
         {
             StreamWriter SW = new StreamWriter(FullFileName);
@@ -105,6 +113,11 @@ namespace GrowthCurveLibrary
                 SW.Close();
 
             }
+        /// <summary>
+        /// Export the raw data as well as the results of fitting the data.
+        /// </summary>
+        /// <param name="FullFileName">Name of file to write.</param>
+        /// <param name="GCC">Collection of GrowthCurves to export</param>
         public static void ExportData(string FullFileName, GrowthCurveCollection GCC)
         {
             StreamWriter SW = new StreamWriter(FullFileName);
@@ -155,7 +168,12 @@ namespace GrowthCurveLibrary
         }
         public const string Intermissionline = "Complete Data Listing Below";
      
-    
+    /// <summary>
+    /// A deprecated method.
+    /// </summary>
+    /// <param name="FullFileName"></param>
+    /// <param name="GCC"></param>
+        [Obsolete]
         public static void ExportDataDEPRECATED(string FullFileName, GrowthCurveCollection GCC)
         {
             bool LagData = false;
