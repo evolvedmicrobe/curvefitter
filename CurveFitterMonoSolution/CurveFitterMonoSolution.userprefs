@@ -1,11 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Mono" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="../MatrixArrayPlot/MatrixArrayPlot/PlateHeatMap.cs">
+    <Files>
+      <File FileName="../GrowthCurveLibrary/ImportData.cs" Line="11" Column="7" />
+      <File FileName="../MatrixArrayPlot/MatrixArrayPlot/PlateHeatMap.cs" Line="11" Column="26" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="CurveFitterMonoGUI" expanded="True" selected="True" />
-          <Node name="GrowthCurveLibrary" expanded="True" />
+        <State expanded="True" selected="True">
+          <Node name="CurveFitterMonoGUI" expanded="True">
+            <Node name="References" expanded="True" />
+          </Node>
+          <Node name="GrowthCurveLibrary" expanded="True">
+            <Node name="References" expanded="True" />
+          </Node>
+          <Node name="MatrixArrayPlot" expanded="True">
+            <Node name="References" expanded="True" />
+          </Node>
         </State>
       </Pad>
     </Pads>
