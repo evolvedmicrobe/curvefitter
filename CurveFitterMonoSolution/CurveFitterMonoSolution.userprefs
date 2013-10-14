@@ -1,15 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Mono" ActiveRuntime="Mono 3.0.6" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\Fit Growth Curves\CurveFitter.cs">
-    <Files>
-      <File FileName="d:\Dropbox\Software\CurveFitter\GrowthCurveLibrary\ImportData.cs" Line="25" Column="39" />
-      <File FileName="..\GrowthCurveLibrary\ModelsAndFitting\GroupFitter.cs" Line="26" Column="10" />
-      <File FileName="..\Fit Growth Curves\CurveFitter.cs" Line="30" Column="61" />
-    </Files>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Mono" />
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="CurveFitterGUI" expanded="True" />
+          <Node name="CurveFitterMonoGUI" expanded="True" selected="True" />
           <Node name="GrowthCurveLibrary" expanded="True" />
         </State>
       </Pad>

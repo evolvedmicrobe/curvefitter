@@ -11,6 +11,8 @@
     <AssemblyName>CurveFitterMonoGUI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,41 +24,30 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Mono\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;MONO</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Mono2|AnyCPU'">
     <OutputPath>bin\Mono\</OutputPath>
     <DefineConstants>TRACE;DEBUG;MONO</DefineConstants>
     <Optimize>true</Optimize>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MathFunc, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af39242306d6159d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\NeededAssemblies\MathFunc.dll</HintPath>
-    </Reference>
-    <Reference Include="ShoArray, Version=2.0.5.0, Culture=neutral, PublicKeyToken=1635376d5e62ab5f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\NeededAssemblies\ShoArray.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="ZedGraph">
       <HintPath>..\NeededAssemblies\ZedGraph.DLL</HintPath>
+    </Reference>
+    <Reference Include="MathFunc">
+      <HintPath>..\NeededAssemblies\MathFunc.dll</HintPath>
+    </Reference>
+    <Reference Include="ShoArray">
+      <HintPath>..\NeededAssemblies\ShoArray.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -99,11 +90,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GrowthCurveLibrary\GrowthCurveLibrary.csproj">
-      <Project>{baa4f5f2-edca-4cf4-96d4-d076abda1459}</Project>
+      <Project>{BAA4F5F2-EDCA-4CF4-96D4-D076ABDA1459}</Project>
       <Name>GrowthCurveLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\MatrixArrayPlot\MatrixArrayPlot\MatrixArrayPlot.csproj">
-      <Project>{186de3c8-1c26-4c97-9c83-9f5c74a8860c}</Project>
+      <Project>{186DE3C8-1C26-4C97-9C83-9F5C74A8860C}</Project>
       <Name>MatrixArrayPlot</Name>
     </ProjectReference>
   </ItemGroup>
