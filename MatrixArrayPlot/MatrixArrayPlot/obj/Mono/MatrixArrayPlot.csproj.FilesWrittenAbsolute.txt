@@ -1,0 +1,5 @@
+/home/nigel/curvefitter/MatrixArrayPlot/MatrixArrayPlot/obj/Mono/MatrixArrayPlot.ArrayPlot.resources
+/home/nigel/curvefitter/MatrixArrayPlot/MatrixArrayPlot/obj/Mono/MatrixArrayPlot.PlateHeatMap.resources
+/home/nigel/curvefitter/MatrixArrayPlot/MatrixArrayPlot/obj/Mono/MatrixArrayPlot.PlatePlot.resources
+/home/nigel/curvefitter/MatrixArrayPlot/MatrixArrayPlot/bin/Mono/MatrixArrayPlot.dll
+/home/nigel/curvefitter/MatrixArrayPlot/MatrixArrayPlot/obj/Mono/MatrixArrayPlot.dll

@@ -1,0 +1,96 @@
+XBuild Engine Version 2.10.8.1
+Mono, Version 2.10.8.1
+Copyright (C) Marek Sieradzki 2005-2008, Novell 2008-2011.
+
+Build started 10/14/2013 3:37:28 PM.
+__________________________________________________
+/home/nigel/curvefitter/CurveFitterMonoSolution/CurveFitterMonoSolution.sln:  warning : Failed to find project 133b4212-8c0c-41a3-b1ff-6a41bd780337
+Project "/home/nigel/curvefitter/CurveFitterMonoSolution/CurveFitterMonoSolution.sln" (default target(s)):
+	Target ValidateSolutionConfiguration:
+		Building solution configuration "Debug|x86".
+	Target Build:
+		Project "/home/nigel/curvefitter/GrowthCurveLibrary/GrowthCurveLibrary.csproj" (default target(s)):
+			Target PrepareForBuild:
+				Configuration: Debug Platform: AnyCPU
+			Target ResolveAssemblyReferences:
+/usr/lib/mono/4.0/Microsoft.Common.targets:  warning : Reference 'Rand, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af26ffbb175a1abe' not resolved
+				For searchpath /home/nigel/curvefitter/NeededAssemblies
+				Considered '/home/nigel/curvefitter/NeededAssemblies/Rand' as a file, but the file does not exist
+				Considered '/home/nigel/curvefitter/NeededAssemblies/Rand.exe' as a file, but the file does not exist
+				Considered '/home/nigel/curvefitter/NeededAssemblies/Rand.dll' as a file, but the file does not exist
+				For searchpath {CandidateAssemblyFiles}
+				Warning: {CandidateAssemblyFiles} not supported currently
+				For searchpath {HintPathFromItem}
+				HintPath attribute not found
+				For searchpath {TargetFrameworkDirectory}
+				Considered target framework dir /usr/lib/mono/4.0, assembly named 'Rand' not found.
+				For searchpath {PkgConfig}
+				Considered Rand, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af26ffbb175a1abe, but could not find in any pkg-config files.
+				For searchpath {GAC}
+				Considered Rand, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af26ffbb175a1abe, but could not find in the GAC.
+				For searchpath {RawFileName}
+				Considered '/home/nigel/curvefitter/GrowthCurveLibrary/Rand, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af26ffbb175a1abe' as a file, but the file does not exist
+				For searchpath bin/Debug/
+				Considered '/home/nigel/curvefitter/GrowthCurveLibrary/bin/Debug/Rand' as a file, but the file does not exist
+				Considered '/home/nigel/curvefitter/GrowthCurveLibrary/bin/Debug/Rand.exe' as a file, but the file does not exist
+				Considered '/home/nigel/curvefitter/GrowthCurveLibrary/bin/Debug/Rand.dll' as a file, but the file does not exist
+/usr/lib/mono/4.0/Microsoft.Common.targets:  warning : Reference 'Rand, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af26ffbb175a1abe' not resolved
+				For searchpath /home/nigel/curvefitter/NeededAssemblies
+				Considered '/home/nigel/curvefitter/NeededAssemblies/Rand' as a file, but the file does not exist
+				Considered '/home/nigel/curvefitter/NeededAssemblies/Rand.exe' as a file, but the file does not exist
+				Considered '/home/nigel/curvefitter/NeededAssemblies/Rand.dll' as a file, but the file does not exist
+				For searchpath {CandidateAssemblyFiles}
+				Warning: {CandidateAssemblyFiles} not supported currently
+				For searchpath {HintPathFromItem}
+				HintPath attribute not found
+				For searchpath {TargetFrameworkDirectory}
+				Considered target framework dir /usr/lib/mono/4.0, assembly named 'Rand' not found.
+				For searchpath {PkgConfig}
+				Considered Rand, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af26ffbb175a1abe, but could not find in any pkg-config files.
+				For searchpath {GAC}
+				Considered Rand, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af26ffbb175a1abe, but could not find in the GAC.
+				For searchpath {RawFileName}
+				Considered '/home/nigel/curvefitter/GrowthCurveLibrary/Rand, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af26ffbb175a1abe' as a file, but the file does not exist
+				For searchpath bin/Debug/
+				Considered '/home/nigel/curvefitter/GrowthCurveLibrary/bin/Debug/Rand' as a file, but the file does not exist
+				Considered '/home/nigel/curvefitter/GrowthCurveLibrary/bin/Debug/Rand.exe' as a file, but the file does not exist
+				Considered '/home/nigel/curvefitter/GrowthCurveLibrary/bin/Debug/Rand.dll' as a file, but the file does not exist
+			Target GenerateSatelliteAssemblies:
+			No input files were specified for target GenerateSatelliteAssemblies, skipping.
+			Target CoreCompile:
+				Tool /usr/bin/dmcs execution started with arguments: /noconfig /debug:full /debug+ /optimize- /out:obj/Debug/GrowthCurveLibrary.dll ModelsAndFitting/AbstractFitter.cs ModelsAndFitting/OffSetExponential.cs ExportData.cs ModelsAndFitting/Fitters.cs ModelsAndFitting/GroupFitter.cs GrowthCurve.cs GrowthCurveCollection.cs ModelsAndFitting/IAbstractFitter.cs ImportData.cs ModelsAndFitting/LogisticModel.cs ModelsAndFitting/OffSetExponential_Old.cs ModelsAndFitting/OutlierDetector.cs Properties/AssemblyInfo.cs Properties/Settings.Designer.cs ModelsAndFitting/QuadraticLinearRegression.cs ModelsAndFitting/MixtureModelClass.cs /target:library /define:"DEBUG;TRACE" /reference:../NeededAssemblies/alglibnet2.dll /reference:../NeededAssemblies/Microsoft.Solver.Foundation.DLL /reference:../NeededAssemblies/ShoOptimizer.DLL /reference:../NeededAssemblies/Stats.dll /reference:/usr/lib/mono/4.0/System.dll /reference:/usr/lib/mono/4.0/System.Drawing.dll /reference:/usr/lib/mono/4.0/System.Windows.Forms.dll /reference:/usr/lib/mono/4.0/System.Xml.Linq.dll /reference:/usr/lib/mono/4.0/System.Data.DataSetExtensions.dll /reference:/usr/lib/mono/4.0/Microsoft.CSharp.dll /reference:/usr/lib/mono/4.0/System.Data.dll /reference:/usr/lib/mono/4.0/System.Xml.dll /reference:../NeededAssemblies/ShoArray.dll /reference:../NeededAssemblies/MathFunc.dll /reference:../NeededAssemblies/MatrixInterf.dll /reference:/usr/lib/mono/4.0/System.Core.dll /reference:/usr/lib/mono/4.0/mscorlib.dll /reference:/usr/lib/mono/4.0/System.Configuration.dll /reference:/usr/lib/mono/4.0/System.Data.Linq.dll /reference:/usr/lib/mono/4.0/System.ServiceModel.dll /reference:/usr/lib/mono/4.0/System.Web.dll /reference:/usr/lib/mono/4.0/System.Numerics.dll /warn:4
+ImportData.cs(7,17): error CS0234: The type or namespace name `Office' does not exist in the namespace `Microsoft'. Are you missing an assembly reference?
+			Task "Csc" execution -- FAILED
+			Done building target "CoreCompile" in project "/home/nigel/curvefitter/GrowthCurveLibrary/GrowthCurveLibrary.csproj".-- FAILED
+		Done building project "/home/nigel/curvefitter/GrowthCurveLibrary/GrowthCurveLibrary.csproj".-- FAILED
+	Task "MSBuild" execution -- FAILED
+	Done building target "Build" in project "/home/nigel/curvefitter/CurveFitterMonoSolution/CurveFitterMonoSolution.sln".-- FAILED
+Done building project "/home/nigel/curvefitter/CurveFitterMonoSolution/CurveFitterMonoSolution.sln".-- FAILED
+
+Build FAILED.
+
+Warnings:
+
+/home/nigel/curvefitter/CurveFitterMonoSolution/CurveFitterMonoSolution.sln:  warning : Failed to find project 133b4212-8c0c-41a3-b1ff-6a41bd780337
+
+/home/nigel/curvefitter/CurveFitterMonoSolution/CurveFitterMonoSolution.sln (default targets) ->
+(Build target) ->
+/home/nigel/curvefitter/GrowthCurveLibrary/GrowthCurveLibrary.csproj (default targets) ->
+/usr/lib/mono/4.0/Microsoft.Common.targets (ResolveAssemblyReferences target) ->
+
+	/usr/lib/mono/4.0/Microsoft.Common.targets:  warning : Reference 'Rand, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af26ffbb175a1abe' not resolved
+	/usr/lib/mono/4.0/Microsoft.Common.targets:  warning : Reference 'Rand, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af26ffbb175a1abe' not resolved
+
+Errors:
+
+/home/nigel/curvefitter/CurveFitterMonoSolution/CurveFitterMonoSolution.sln (default targets) ->
+(Build target) ->
+/home/nigel/curvefitter/GrowthCurveLibrary/GrowthCurveLibrary.csproj (default targets) ->
+/usr/lib/mono/4.0/Microsoft.CSharp.targets (CoreCompile target) ->
+
+	ImportData.cs(7,17): error CS0234: The type or namespace name `Office' does not exist in the namespace `Microsoft'. Are you missing an assembly reference?
+
+	 3 Warning(s)
+	 1 Error(s)
+
+Time Elapsed 00:00:00.7367070
