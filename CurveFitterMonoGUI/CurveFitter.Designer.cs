@@ -551,6 +551,7 @@ namespace Fit_Growth_Curves
             this.rbtnEndODvMax.TabIndex = 219;
             this.rbtnEndODvMax.Text = "End OD v Growth Rate";
             this.rbtnEndODvMax.UseVisualStyleBackColor = true;
+
             // 
             // rbtnMaxvGrowthRate
             // 
@@ -561,6 +562,7 @@ namespace Fit_Growth_Curves
             this.rbtnMaxvGrowthRate.TabIndex = 218;
             this.rbtnMaxvGrowthRate.Text = "Plot Max OD v Growth Rate";
             this.rbtnMaxvGrowthRate.UseVisualStyleBackColor = true;
+
             // 
             // rbtnInitialPopvGrowthRate
             // 
@@ -571,6 +573,7 @@ namespace Fit_Growth_Curves
             this.rbtnInitialPopvGrowthRate.TabIndex = 217;
             this.rbtnInitialPopvGrowthRate.Text = "Initial Pop v Growth Rate";
             this.rbtnInitialPopvGrowthRate.UseVisualStyleBackColor = true;
+
             // 
             // rbtnMakeQQPlot
             // 
@@ -581,6 +584,7 @@ namespace Fit_Growth_Curves
             this.rbtnMakeQQPlot.TabIndex = 216;
             this.rbtnMakeQQPlot.Text = "Make QQ Plot";
             this.rbtnMakeQQPlot.UseVisualStyleBackColor = true;
+
             // 
             // rbtnGroupOffSetMinusStart
             // 
@@ -619,6 +623,7 @@ namespace Fit_Growth_Curves
             this.rbtnPlotLinearResiduals.TabIndex = 212;
             this.rbtnPlotLinearResiduals.Text = "Residuals from Linear Fit";
             this.rbtnPlotLinearResiduals.UseVisualStyleBackColor = true;
+
             // 
             // rbtnMaxMinusEnd
             // 
@@ -629,6 +634,7 @@ namespace Fit_Growth_Curves
             this.rbtnMaxMinusEnd.TabIndex = 211;
             this.rbtnMaxMinusEnd.Text = "Plot Maximum OD - End OD";
             this.rbtnMaxMinusEnd.UseVisualStyleBackColor = true;
+
             // 
             // rbtnFittedResiduals
             // 
@@ -639,6 +645,7 @@ namespace Fit_Growth_Curves
             this.rbtnFittedResiduals.TabIndex = 210;
             this.rbtnFittedResiduals.Text = "Fitted Residuals";
             this.rbtnFittedResiduals.UseVisualStyleBackColor = true;
+
             // 
             // rbtnPlotAllResiduals
             // 
@@ -649,6 +656,7 @@ namespace Fit_Growth_Curves
             this.rbtnPlotAllResiduals.TabIndex = 209;
             this.rbtnPlotAllResiduals.Text = "All Residuals";
             this.rbtnPlotAllResiduals.UseVisualStyleBackColor = true;
+
             // 
             // btnRowGroups
             // 
@@ -678,6 +686,7 @@ namespace Fit_Growth_Curves
             this.rbtnPlotLagTime.TabIndex = 206;
             this.rbtnPlotLagTime.Text = "Lag Time";
             this.rbtnPlotLagTime.UseVisualStyleBackColor = true;
+
             // 
             // rbtnPlotLastOD
             // 

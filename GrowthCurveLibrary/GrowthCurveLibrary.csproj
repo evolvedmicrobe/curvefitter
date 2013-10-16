@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Mono</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
@@ -11,25 +11,6 @@
     <RootNamespace>GrowthCurveLibrary</RootNamespace>
     <AssemblyName>GrowthCurveLibrary</AssemblyName>
     <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>True</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Mono|AnyCPU'">
     <OutputPath>bin\Mono\</OutputPath>
@@ -41,12 +22,6 @@
   <ItemGroup>
     <Reference Include="alglibnet2">
       <HintPath>..\NeededAssemblies\alglibnet2.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Solver.Foundation">
-      <HintPath>..\NeededAssemblies\Microsoft.Solver.Foundation.DLL</HintPath>
-    </Reference>
-    <Reference Include="ShoOptimizer">
-      <HintPath>..\NeededAssemblies\ShoOptimizer.DLL</HintPath>
     </Reference>
     <Reference Include="Stats">
       <HintPath>..\NeededAssemblies\Stats.dll</HintPath>
@@ -68,6 +43,12 @@
     </Reference>
     <Reference Include="MatrixInterf">
       <HintPath>..\NeededAssemblies\MatrixInterf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Solver.Foundation">
+      <HintPath>..\NeededAssemblies\Microsoft.Solver.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="ShoOptimizer">
+      <HintPath>..\NeededAssemblies\ShoOptimizer.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

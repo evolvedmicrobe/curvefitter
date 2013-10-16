@@ -27,7 +27,6 @@ namespace Fit_Growth_Curves
         double ChartPickDataLastFitXValue = BAD_DATA_VALUE;
         PlateHeatMap.PlateType CurrentPlateType = PlateHeatMap.PlateType.None;
         private GrowthCurveCollection GCC=new GrowthCurveCollection();
-        private GrowthCurveCollection GroupModelGCC = new GrowthCurveCollection();
         //individual growth curves might
         //not have data everywhere
         public CurveFitter()
@@ -42,9 +41,42 @@ namespace Fit_Growth_Curves
             TreatmentTextBoxes[5] = txtTreatment5;
             TreatmentTextBoxes[6] = txtTreatment6;
             ChartN.ZoomEvent += new ZedGraphControl.ZoomEventHandler(ChartN_ZoomEvent);
+			ChartN.MouseClick += new System.Windows.Forms.MouseEventHandler (ChartN_MouseClick);
+
             ChartPickData.ZoomEvent+=new ZedGraphControl.ZoomEventHandler(ChartPickData_ZoomEvent);
             toDeletePlateMap.IndividualWellChanged += new SelectablePlateMap.ChangedEventHandler(toDeletePlateMap_IndividualWellChanged);
             toDeletePlateMap.SHOW_GROUP_NUMBER = false;
+
+			this.rbtnGroupsSlopeDoublingsLogOD.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnGroupDifFromCenter.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnGroupsQQLinear.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnGroupsOffSetGrowthRate.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnGroupsLinFit.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnMixtureModelGR.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnEndODvMax.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnMaxvGrowthRate.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnInitialPopvGrowthRate.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnMakeQQPlot.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnGroupOffSetMinusStart.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnPlotLinearResiduals.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnMaxMinusEnd.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnFittedResiduals.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnPlotAllResiduals.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnPlotSlope.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnPlotLagTime.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnPlotLastOD.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnTimeToOD.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnTreatNumPoints.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnTreatTimevOD.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnTreatDoublingTime.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnTreatInitialOD.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnTreatRSq.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnTreatGrowthRate.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnTreatMaxOd.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+
+			this.btnMakeEvoGroups.Click += new System.EventHandler (btnMakeEvoGroups_Click);
+			this.btnRowGroups.Click += new System.EventHandler (btnRowGroups_Click);
+			this.btnClearTreatments.Click += new System.EventHandler (btnClearTreatments_Click);
         }
         void  ChartPickData_ZoomEvent(ZedGraphControl sender, ZoomState oldState, ZoomState newState)
 {
