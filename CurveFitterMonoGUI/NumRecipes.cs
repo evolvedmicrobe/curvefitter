@@ -5,15 +5,10 @@ using System.Collections;
 using System.Linq;
 
 namespace Fit_Growth_Curves
-{
-
-    #region SimpleFunctions
+{   
     public class SimpleFunctions
     {
-        public static T Max<T>(IEnumerable<T> Values)
-        {
-            return Values.Max();
-        }
+        
         public static void CleanNonRealNumbersFromYvaluesInXYPair(ref double[] x, ref double[] y)
         {
             if ((x.Length != y.Length) | x.Rank != 1 | y.Rank != 1) { throw new Exception("This XY pair is sized wrong"); }
@@ -59,5 +54,4 @@ namespace Fit_Growth_Curves
       
 
     }
-    #endregion
 }

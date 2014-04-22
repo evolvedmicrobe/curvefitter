@@ -112,7 +112,6 @@ namespace Fit_Growth_Curves
                 }
             }
             return IndexesToReturn;
-
         }
         private int[] ReturnIndexesInRows(int[] rows)
         {
@@ -225,10 +224,6 @@ namespace Fit_Growth_Curves
             int[] toReturn = new int[NewWells.Count];
             NewWells.CopyTo(toReturn);
             return toReturn;
-            
-
-           
-
         }
         private void SetPlateValues()
         {

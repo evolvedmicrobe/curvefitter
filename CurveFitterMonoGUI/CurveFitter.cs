@@ -478,7 +478,7 @@ namespace Fit_Growth_Curves
                 SetLineValues(ChartPickData.GraphPane.AddCurve("Fitted", toPlot.FittedXValues, toPlot.FittedLogYValues, Color.BlueViolet, SymbolType.Square), Color.BlueViolet);
                 double[] x, y;
                 
-                toPlot.GrowthRate.FitterUsed.GenerateFitLine(0, .1, SimpleFunctions.Max(toPlot.FittedXValues), out x, out y);
+                toPlot.GrowthRate.FitterUsed.GenerateFitLine(0, .1, toPlot.FittedXValues.Max(), out x, out y);
                 if (toPlot.GrowthRate.FitterUsed is ExponentialFit)
                 {
                     y = y.Select((q) => Math.Log(q)).ToArray();
