@@ -49,9 +49,10 @@ namespace GrowthCurveLibrary
             {
                 if (FI.Extension == ".txt")
                 {
+                    StreamReader SR;
                     try
                     {
-                        StreamReader SR = new StreamReader(FI.FullName);
+                        SR = new StreamReader(FI.FullName);
                         SR.ReadLine();//skip the first line
                         string line;
                         double[] newData = new double[plateSize];
@@ -83,6 +84,10 @@ namespace GrowthCurveLibrary
                     }
                     catch (Exception thrown)
                     {
+                        if(SR!=null)
+                        {
+                            SR.Dispose();
+                        }
                         Exception ex = new Exception("File " + FI.Name + " is screwed" + thrown.Message);
                         throw ex;
                     }
