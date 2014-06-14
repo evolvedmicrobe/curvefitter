@@ -42,3 +42,5 @@ GrowthCurveLibrary/GrowthCurveLibrary.pidb
 CurveFitterMonoSolution/CurveFitterMonoSolution.userprefs
 
 CurveFitterMonoGUI/CurveFitterMonoGUI.pidb
+
+*.userprefs
