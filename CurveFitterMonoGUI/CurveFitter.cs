@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.IO;
+using System.Windows.Forms;
+using ZedGraph;
+using System.Linq;
+using System.Drawing.Drawing2D;
 using System;
 using System.Collections.Generic;
 using System.Collections;
@@ -27,7 +40,6 @@ namespace Fit_Growth_Curves
         double ChartPickDataLastFitXValue = BAD_DATA_VALUE;
         PlateHeatMap.PlateType CurrentPlateType = PlateHeatMap.PlateType.None;
         private GrowthCurveCollection GCC=new GrowthCurveCollection();
-        private GrowthCurveCollection GroupModelGCC = new GrowthCurveCollection();
         //individual growth curves might
         //not have data everywhere
         public CurveFitter()
@@ -41,13 +53,62 @@ namespace Fit_Growth_Curves
             TreatmentTextBoxes[4] = txtTreatment4;
             TreatmentTextBoxes[5] = txtTreatment5;
             TreatmentTextBoxes[6] = txtTreatment6;
-            
+            ChartN.ZoomEvent += new ZedGraphControl.ZoomEventHandler(ChartN_ZoomEvent);
+			ChartN.MouseClick += new System.Windows.Forms.MouseEventHandler (ChartN_MouseClick);
+
+            ChartPickData.ZoomEvent+=new ZedGraphControl.ZoomEventHandler(ChartPickData_ZoomEvent);
             toDeletePlateMap.IndividualWellChanged += new SelectablePlateMap.ChangedEventHandler(toDeletePlateMap_IndividualWellChanged);
             toDeletePlateMap.SHOW_GROUP_NUMBER = false;
+
+			this.rbtnGroupsSlopeDoublingsLogOD.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnGroupDifFromCenter.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnGroupsQQLinear.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnGroupsOffSetGrowthRate.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnGroupsLinFit.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnMixtureModelGR.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnEndODvMax.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnMaxvGrowthRate.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnInitialPopvGrowthRate.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnMakeQQPlot.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnGroupOffSetMinusStart.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnPlotLinearResiduals.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnMaxMinusEnd.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnFittedResiduals.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnPlotAllResiduals.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnPlotSlope.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnPlotLagTime.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnPlotLastOD.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnTimeToOD.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnTreatNumPoints.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnTreatTimevOD.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnTreatDoublingTime.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnTreatInitialOD.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnTreatRSq.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnTreatGrowthRate.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+			this.rbtnTreatMaxOd.CheckedChanged += new System.EventHandler(this.chkTreat_CheckedChanged);
+
+			this.btnMakeEvoGroups.Click += new System.EventHandler (btnMakeEvoGroups_Click);
+			this.btnRowGroups.Click += new System.EventHandler (btnRowGroups_Click);
+			this.btnClearTreatments.Click += new System.EventHandler (btnClearTreatments_Click);
         }
-       
+        void  ChartPickData_ZoomEvent(ZedGraphControl sender, ZoomState oldState, ZoomState newState)
+{
+ 	if (ChartPickDataLastFitXValue != BAD_DATA_VALUE)
+            {
+                RefitCurve(ChartPickDataLastFitXValue);
+                ChartPickDataLastFitXValue = BAD_DATA_VALUE;
+            }
+}
         //really backwards way to undo a point fit change due to a zoom event
-       
+        void ChartN_ZoomEvent(ZedGraphControl sender, ZoomState oldState, ZoomState newState)
+        {
+            if (ChartNLastFitXValue != BAD_DATA_VALUE)
+            {
+                RefitCurve(ChartNLastFitXValue);
+                ChartNLastFitXValue = BAD_DATA_VALUE;
+            }
+        }
+
         #region UPDATE/CHANGE EVENTS
 
         /// <summary>
@@ -172,8 +233,8 @@ namespace Fit_Growth_Curves
             ChartStandard.GraphPane.Title.Text = "";
             ChartSlopeN.GraphPane.Title.Text = "";
             scaleBarSensitivity.AttachArrayToProvideScaleFor(sensitivityArray);
-           
-           
+            ChartN.ZoomEvent+=new ZedGraphControl.ZoomEventHandler(ChartN_ZoomEvent);
+            ChartPickData.ZoomEvent+=new ZedGraphControl.ZoomEventHandler(ChartPickData_ZoomEvent);
         }
         private void GetData(string FullFileName)
         {
@@ -369,7 +430,7 @@ namespace Fit_Growth_Curves
                             li.Line.Width = (float)2.0;
                         }
                     }
-
+#endif
                     if ((toPlot.LogisticModel != null) && toPlot.LogisticModel.SuccessfulFit)
                     {
                         double[] x2, y2;
@@ -381,9 +442,7 @@ namespace Fit_Growth_Curves
                             li.Line.Width = (float)2.0;
                         }
                     }
-#endif
                 }
-                   
                 CreatePickDataPlot(toPlot);
             }
             catch
@@ -432,7 +491,7 @@ namespace Fit_Growth_Curves
                 SetLineValues(ChartPickData.GraphPane.AddCurve("Fitted", toPlot.FittedXValues, toPlot.FittedLogYValues, Color.BlueViolet, SymbolType.Square), Color.BlueViolet);
                 double[] x, y;
                 
-                toPlot.GrowthRate.FitterUsed.GenerateFitLine(0, .1, SimpleFunctions.Max(toPlot.FittedXValues), out x, out y);
+                toPlot.GrowthRate.FitterUsed.GenerateFitLine(0, .1, toPlot.FittedXValues.Max(), out x, out y);
                 if (toPlot.GrowthRate.FitterUsed is ExponentialFit)
                 {
                     y = y.Select((q) => Math.Log(q)).ToArray();
@@ -719,6 +778,12 @@ namespace Fit_Growth_Curves
             plateMap.SetValue(curPlateValueFunction);
                
             List<double> Data= (GCC.Select((X)=>SafeGet(new GetValueForTreatment(curPlateValueFunction),X)).Where(x=>SimpleFunctions.IsARealNumber(x))).ToList();
+            HistogramData(Data, (Data.Count() / 3), graphHistogram.GraphPane);
+            graphHistogram.GraphPane.Title.Text = "Histogram";
+            graphHistogram.GraphPane.XAxis.Title.Text = "";
+            graphHistogram.GraphPane.YAxis.Title.Text = "";
+            graphHistogram.AxisChange();
+            graphHistogram.Refresh();
             }
             catch
             {
@@ -750,7 +815,14 @@ namespace Fit_Growth_Curves
             {
                 curPlateValueFunction = new PlateHeatMap.GrowthCurveDoubleValueGetter((x) => x.GrowthRate.RMSE);
             }
-            
+            else if (sender == rbtnPlatePlotLogistic15)
+            {
+                curPlateValueFunction = new PlateHeatMap.GrowthCurveDoubleValueGetter((x) => x.LogisticModel.GetGrowthRateAtODValue(0.15));
+            }
+            else if (sender == rbtnPlatesLogisticR2)
+            {
+                curPlateValueFunction = new PlateHeatMap.GrowthCurveDoubleValueGetter((x) => x.LogisticModel.R2);
+            }
            
             else if (sender == rbtnDoubleTime)
             {
@@ -790,6 +862,29 @@ namespace Fit_Growth_Curves
         }
         
 
+        public void HistogramData(List<double> toPlot, int binNumber, ZedGraph.GraphPane Graph)
+        {
+            Graph.CurveList.Clear();
+            double max = toPlot.Max();
+            double min = toPlot.Min();
+            max = max * 1.0001;
+            min = min * .9999;
+            double[] counts = new double[binNumber + 1];
+            double[] midpoints = new double[binNumber + 1];
+            double interval = (max - min) / Convert.ToDouble(binNumber);
+            PointPairList ppl = new PointPairList();
+            for (int i = 0; i <= binNumber; i++)
+            {
+                double cmin = min + i * interval;
+                double cmax = cmin + interval;
+                midpoints[i] = cmin + (cmax - cmin) / 2;
+                int count = toPlot.Count(x => x >= cmin && x < cmax);
+                counts[i] = Convert.ToDouble(count);
+                ppl.Add(midpoints[i], counts[i]);
+            }
+            Graph.AddBar("Distribtuion", ppl, System.Drawing.Color.Blue);
+
+        }
        
         
         private void btnDeleteFirstBlank_Click(object sender, EventArgs e)
@@ -1413,7 +1508,10 @@ namespace Fit_Growth_Curves
             this.Cursor = Cursors.Default;
         }
 
+        private void label22_Click(object sender, EventArgs e)
+        {
 
+        }
 
        
 
@@ -1435,4 +1533,5 @@ namespace Fit_Growth_Curves
 
     }
 }
+
 

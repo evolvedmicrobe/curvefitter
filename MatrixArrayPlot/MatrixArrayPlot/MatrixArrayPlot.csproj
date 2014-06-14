@@ -52,9 +52,6 @@
     <Reference Include="MatrixInterf">
       <HintPath>..\..\NeededAssemblies\MatrixInterf.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Dynamic">
-      <HintPath>..\..\NeededAssemblies\Microsoft.Dynamic.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayPlot.cs">

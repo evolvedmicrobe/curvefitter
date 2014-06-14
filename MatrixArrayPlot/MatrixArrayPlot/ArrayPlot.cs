@@ -296,12 +296,12 @@ namespace MatrixArrayPlot
             public MatrixForPlotting()
             {
                 pArray = new double[12, 12];
-                Random r = new Random();
+                //Random r = new Random();
                 for (int i = 0; i < 12; i++)
                 {
                     for (int j = 0; j < 12; j++)
                     {
-                        pArray[i, j] = r.NextDouble();
+						pArray[i, j] = i/144.0; //r.NextDouble();
                     }
                 }
             }
