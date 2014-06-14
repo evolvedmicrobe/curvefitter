@@ -75,28 +75,23 @@ namespace Fit_Growth_Curves
             ClearLists();
             this.CurrentPlateType = plateMap.AssignPlateType((from x in GCC select x.DataSetName));
             selectablePlateMap1.SwitchToNewPlateType(this.CurrentPlateType);
-            
-            if ((GCC.Count == 48 && this.CurrentPlateType == PlateHeatMap.PlateType.WELL48) || (GCC.Count == 96 && this.CurrentPlateType == PlateHeatMap.PlateType.WELL96))
+            toDeletePlateMap.SwitchToNewPlateType(this.CurrentPlateType);
+            toDeletePlateMap.AssignAllWellsToGroup(0);
+            //if ((GCC.Count == 48 && this.CurrentPlateType == PlateHeatMap.PlateType.WELL48) || (GCC.Count == 96 && this.CurrentPlateType == PlateHeatMap.PlateType.WELL96))
+            //{
+            //    toDeletePlateMap.AssignAllWellsToGroup(0);            
+            //}
+           if (GCC.Count > 0 && CurrentPlateType!=PlateHeatMap.PlateType.None)
             {
-                toDeletePlateMap.AssignAllWellsToGroup(0);
-                toDeletePlateMap.SwitchToNewPlateType(this.CurrentPlateType);
-            
-            }
-           if (GCC.Count > 0)
-            {
-
                 foreach (var GD in GCC)
                 {
                     toDeletePlateMap.AssignWellToGroup(GD.DataSetName, 1);
                     AddGrowthRateDataToBoxes(GD);                    
                 }
-                if (CurrentPlateType != PlateHeatMap.PlateType.None)
-                {
                     foreach (double value in GCC[0].TimeValues_As_Double)
                     {
                         lstTimePoints.Items.Add(value.ToString("n3"));
                     }
-                }
                 lstGrowthCurves.SelectedIndex = 0;
                 plateMap.SetGrowthCurveCollection(GCC);
                 toDeletePlateMap.RecreateImage();
@@ -334,86 +329,91 @@ namespace Fit_Growth_Curves
             //NOW FOR THE NORMAL SCALE
             try
             {
+                bool alreadyFit=toPlot.FittedYValues!=null && toPlot.FittedYValues.Length>0;
                 bool ExtendFit = false;
-                double xmax;
-                if (ExtendFit)
-                    xmax = (from x in toPlot where x.ODValue == toPlot.HighestODValue select x.time_as_double).First();
-                else
-                    xmax = toPlot.FittedXValues.Max();
-
-                if ((chkShowLin.Checked && toPlot.LinearModelFitted) || (!GrowthCurve.USE_EXPONENTIAL_FITTING && toPlot.LinearModelFitted))
-                {
-                    double[] x, y;
-                    //Now the predicted line from the linear fit plotted NORMALLY
-                    toPlot.LinFit.GenerateFitLine(FittedXValues.Min(), .1, xmax, out x, out y);
-                    double[] y3 = new double[y.Length];
-                    for (int i = 0; i < y.Length; i++)
-                    {
-                        y3[i] = Math.Exp(y[i]);
-                    }
-                    SimpleFunctions.CleanNonRealNumbersFromYvaluesInXYPair(ref x, ref y);
-                    SetLineValues(ChartStandard.GraphPane.AddCurve("Lin Fit", x, y3, Color.Green, SymbolType.None), Color.Green);
-                    ChartStandard.GraphPane.Legend.IsVisible = true;
-                }
-                //NormalScal-inuse
-                if (toPlot.LinearModelFitted && ShowPredicted)
-                {
-                    double[] toPlotX = FittedXValues.ToArray();
-                    double[] toPlotY = FittedYValues.ToArray();
-                    SimpleFunctions.CleanNonRealNumbersFromYvaluesInXYPair(ref toPlotX, ref toPlotY);
-                    ChartStandard.GraphPane.AddCurve("Fitted Data", toPlotX, toPlotY, Color.BlueViolet, SymbolType.Square);
-                }
-                //Now the predictedLine
+                 //Now the predictedLine
                 ChartStandard.GraphPane.AddCurve("Data",toPlot.TimeValues_As_Double,toPlot.ODValues,Color.Blue,SymbolType.Square);
-                //now any outliers
-                var vvv = ChartStandard.GraphPane.AddCurve("Outliers", toPlot.OutlierXValues, toPlot.OutlierYValues, Color.Red, SymbolType.Star);
-                vvv.Line.IsVisible = false;
-                //Now to add the lag time
-                if (toPlot.ExpModelFitted)
+
+                if (alreadyFit)
                 {
-                    //First the actual exponential fit
-                    double[] x1, y1;
-                    
-                 
-                    toPlot.ExpFit.GenerateFitLine(0, .1, xmax, out x1, out y1);
-                    SimpleFunctions.CleanNonRealNumbersFromYvaluesInXYPair(ref x1, ref y1);
-                    if (x1.Length > 0)
+                    double xmax;
+
+                    if (ExtendFit)
+                        xmax = (from x in toPlot where x.ODValue == toPlot.HighestODValue select x.time_as_double).First();
+                    else
                     {
-                        ChartStandard.GraphPane.AddCurve("Exp Fit", x1, y1, Color.Plum, SymbolType.None);
-                   }
-                    if (toPlot.OffSetExp != null && toPlot.OffSetExp.SuccessfulFit)
-                    {
-                        double[] x2, y2;
-                        toPlot.OffSetExp.GenerateFitLine(0, .1, xmax, out x2, out y2);
-                        SimpleFunctions.CleanNonRealNumbersFromYvaluesInXYPair(ref x2, ref y2);
-                        if (x2.Length > 0)
-                        {
-                           LineItem li= ChartStandard.GraphPane.AddCurve("Offset Fit", x2, y2, Color.Brown, SymbolType.None);
-                           li.Line.Width = (float)3.0;
-                        }
+                        xmax = toPlot.FittedXValues.Max();
                     }
-                    #if !MONO
-                    if (toPlot.MixtureErrorModel != null && chkShowRobustFit.Checked)
+                    if ((chkShowLin.Checked && toPlot.LinearModelFitted) || (!GrowthCurve.USE_EXPONENTIAL_FITTING && toPlot.LinearModelFitted))
                     {
-                        double[] x2, y2;
-                        toPlot.MixtureErrorModel.GenerateFitLine(0, .1,xmax, out x2, out y2);
-                        SimpleFunctions.CleanNonRealNumbersFromYvaluesInXYPair(ref x2, ref y2);
-                        if (x2.Length > 0)
+                        double[] x, y;
+                        //Now the predicted line from the linear fit plotted NORMALLY
+                        toPlot.LinFit.GenerateFitLine(FittedXValues.Min(), .1, xmax, out x, out y);
+                        double[] y3 = new double[y.Length];
+                        for (int i = 0; i < y.Length; i++)
                         {
-                            LineItem li = ChartStandard.GraphPane.AddCurve("Robust Fit", x2, y2, Color.Black, SymbolType.None);
-                            li.Line.Width = (float)2.0;
+                            y3[i] = Math.Exp(y[i]);
                         }
+                        SimpleFunctions.CleanNonRealNumbersFromYvaluesInXYPair(ref x, ref y);
+                        SetLineValues(ChartStandard.GraphPane.AddCurve("Lin Fit", x, y3, Color.Green, SymbolType.None), Color.Green);
+                        ChartStandard.GraphPane.Legend.IsVisible = true;
                     }
+                    //NormalScal-inuse
+                    if (toPlot.LinearModelFitted && ShowPredicted)
+                    {
+                        double[] toPlotX = FittedXValues.ToArray();
+                        double[] toPlotY = FittedYValues.ToArray();
+                        SimpleFunctions.CleanNonRealNumbersFromYvaluesInXYPair(ref toPlotX, ref toPlotY);
+                        ChartStandard.GraphPane.AddCurve("Fitted Data", toPlotX, toPlotY, Color.BlueViolet, SymbolType.Square);
+                    }
+                    //now any outliers
+                    var vvv = ChartStandard.GraphPane.AddCurve("Outliers", toPlot.OutlierXValues, toPlot.OutlierYValues, Color.Red, SymbolType.Star);
+                    vvv.Line.IsVisible = false;
+                    //Now to add the lag time
+                    if (toPlot.ExpModelFitted)
+                    {
+                        //First the actual exponential fit
+                        double[] x1, y1;
+                        toPlot.ExpFit.GenerateFitLine(0, .1, xmax, out x1, out y1);
+                        SimpleFunctions.CleanNonRealNumbersFromYvaluesInXYPair(ref x1, ref y1);
+                        if (x1.Length > 0)
+                        {
+                            ChartStandard.GraphPane.AddCurve("Exp Fit", x1, y1, Color.Plum, SymbolType.None);
+                        }
+                        if (toPlot.OffSetExp != null && toPlot.OffSetExp.SuccessfulFit)
+                        {
+                            double[] x2, y2;
+                            toPlot.OffSetExp.GenerateFitLine(0, .1, xmax, out x2, out y2);
+                            SimpleFunctions.CleanNonRealNumbersFromYvaluesInXYPair(ref x2, ref y2);
+                            if (x2.Length > 0)
+                            {
+                                LineItem li = ChartStandard.GraphPane.AddCurve("Offset Fit", x2, y2, Color.Brown, SymbolType.None);
+                                li.Line.Width = (float)3.0;
+                            }
+                        }
+#if !MONO
+                        if (toPlot.MixtureErrorModel != null && chkShowRobustFit.Checked)
+                        {
+                            double[] x2, y2;
+                            toPlot.MixtureErrorModel.GenerateFitLine(0, .1, xmax, out x2, out y2);
+                            SimpleFunctions.CleanNonRealNumbersFromYvaluesInXYPair(ref x2, ref y2);
+                            if (x2.Length > 0)
+                            {
+                                LineItem li = ChartStandard.GraphPane.AddCurve("Robust Fit", x2, y2, Color.Black, SymbolType.None);
+                                li.Line.Width = (float)2.0;
+                            }
+                        }
 #endif
-                    if ((toPlot.LogisticModel != null) && toPlot.LogisticModel.SuccessfulFit)
-                    {
-                        double[] x2, y2;
-                        toPlot.LogisticModel.GenerateFitLine(0, .1, xmax, out x2, out y2);
-                        SimpleFunctions.CleanNonRealNumbersFromYvaluesInXYPair(ref x2, ref y2);
-                        if (x2.Length > 0)
+                        if ((toPlot.LogisticModel != null) && toPlot.LogisticModel.SuccessfulFit)
                         {
-                            LineItem li = ChartStandard.GraphPane.AddCurve("Logistic Fit", x2, y2, Color.MidnightBlue, SymbolType.None);
-                            li.Line.Width = (float)2.0;
+                            double[] x2, y2;
+                            toPlot.LogisticModel.GenerateFitLine(0, .1, xmax, out x2, out y2);
+                            SimpleFunctions.CleanNonRealNumbersFromYvaluesInXYPair(ref x2, ref y2);
+                            if (x2.Length > 0)
+                            {
+                                LineItem li = ChartStandard.GraphPane.AddCurve("Logistic Fit", x2, y2, Color.MidnightBlue, SymbolType.None);
+                                li.Line.Width = (float)2.0;
+                            }
                         }
                     }
                 }
@@ -775,9 +775,7 @@ namespace Fit_Growth_Curves
             if (sender == rbtnGrowthRate)
             {
                 curPlateValueFunction = new PlateHeatMap.GrowthCurveDoubleValueGetter((x) => x.GrowthRate.GrowthRate);
-            }
-
-                    
+            }       
             else if (sender == rbtnMixtureGrowthRate)
             {
                 curPlateValueFunction = (x) => x.MixtureErrorModel.GrowthRate;

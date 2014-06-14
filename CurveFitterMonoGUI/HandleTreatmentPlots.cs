@@ -11,9 +11,6 @@ using ZedGraph;
 using System.Linq;
 using System.Drawing.Drawing2D;
 using GrowthCurveLibrary;
-using ShoNS;
-using ShoNS.Array;
-using ShoNS.MathFunc;
 
 namespace Fit_Growth_Curves
 {
@@ -22,7 +19,7 @@ namespace Fit_Growth_Curves
     {
         TextBox[] TreatmentTextBoxes = new TextBox[SelectablePlateMap.MAX_GROUP_ASSIGNMENTS];
         delegate double GetValueForTreatment(GrowthCurve x);
-        delegate PointPair Get2ValuesForTreatment(GrowthCurve x);
+        //delegate PointPair Get2ValuesForTreatment(GrowthCurveLibrary.GrowthCurve x);
         private void ClearTreatmentPlot()
         {
                 GraphPane Graph = plotTreatments.GraphPane;
@@ -40,6 +37,7 @@ namespace Fit_Growth_Curves
                 return Double.NaN;
             }
         }
+#if !MONO
         private PointPair SafeGet(Get2ValuesForTreatment dataFunction, GrowthCurve gc)
         {
             try
@@ -113,6 +111,7 @@ namespace Fit_Growth_Curves
             { MessageBox.Show("Could not make graph, talk to nigel.\n\nError is:\n" + thrown.Message, "Graph Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { this.Cursor = Cursors.Default; }
         }
+#endif
         private void UpdateTreatmentGraphsWithDifference(string BaseLineWell="C4")
         {
             try
@@ -172,6 +171,8 @@ namespace Fit_Growth_Curves
             }
             finally { this.Cursor = Cursors.Default; }
         }
+
+   
         private void RemakeTreatmentGraph()
         {
             ClearTreatmentPlot();
@@ -198,18 +199,7 @@ namespace Fit_Growth_Curves
             }
            
             else if (rbtnPlotAllResiduals.Checked) { UpdateTreatmentGraphWithResidualData(false); }
-            else if (rbtnInitialPopvGrowthRate.Checked)
-            {
-                RemakeTreatmentGraphWith2(x => new PointPair(x.ExpFit.InitialPopSize, x.ExpFit.GrowthRate), "Initial Pop Size vs. Growth Rate");
-            }
-            else if (rbtnMaxvGrowthRate.Checked)
-            {
-                RemakeTreatmentGraphWith2(x => new PointPair(x.ODValues.Max(), x.ExpFit.GrowthRate), "Max OD vs. Growth Rate");
-            }
-            else if (rbtnEndODvMax.Checked)
-            {
-                RemakeTreatmentGraphWith2(x => new PointPair(x.ODValues.Last(), x.ExpFit.GrowthRate), "End OD vs. Growth Rate");
-            }
+
             else
             {
                 GetValueForTreatment valueGetter;

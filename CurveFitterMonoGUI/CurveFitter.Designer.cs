@@ -47,11 +47,11 @@ namespace Fit_Growth_Curves
             this.tabSensitivityAnalysis = new System.Windows.Forms.TabPage();
             this.rbtnSensBiasLinear = new System.Windows.Forms.RadioButton();
             this.lblYAxis = new System.Windows.Forms.Label();
-            this.rbtnSensBiasError = new System.Windows.Forms.RadioButton();
             this.rbtnSensStartEndLog = new System.Windows.Forms.RadioButton();
             this.rbtnSensRange = new System.Windows.Forms.RadioButton();
             this.lblXAxis = new System.Windows.Forms.Label();
             this.lstGrowthRatesSensitivity = new System.Windows.Forms.ListBox();
+            this.rbtnSensBiasError = new System.Windows.Forms.RadioButton();
             this.tabPlotGraphic = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
             this.plotTreatments = new ZedGraph.ZedGraphControl();
@@ -62,9 +62,6 @@ namespace Fit_Growth_Curves
             this.rbtnGroupsOffSetGrowthRate = new System.Windows.Forms.RadioButton();
             this.rbtnGroupsLinFit = new System.Windows.Forms.RadioButton();
             this.rbtnMixtureModelGR = new System.Windows.Forms.RadioButton();
-            this.rbtnEndODvMax = new System.Windows.Forms.RadioButton();
-            this.rbtnMaxvGrowthRate = new System.Windows.Forms.RadioButton();
-            this.rbtnInitialPopvGrowthRate = new System.Windows.Forms.RadioButton();
             this.rbtnMakeQQPlot = new System.Windows.Forms.RadioButton();
             this.rbtnGroupOffSetMinusStart = new System.Windows.Forms.RadioButton();
             this.btnMakeEvoGroups = new System.Windows.Forms.Button();
@@ -111,15 +108,12 @@ namespace Fit_Growth_Curves
             this.btnDelete2ndPoint = new System.Windows.Forms.Button();
             this.btnDeleteFirstBlank = new System.Windows.Forms.Button();
             this.tabRobo = new System.Windows.Forms.TabPage();
-            this.rbtnPlatesLogisticR2 = new System.Windows.Forms.RadioButton();
-            this.rbtnPlatePlotLogistic15 = new System.Windows.Forms.RadioButton();
             this.rbtnPlateOffSetIDMinusStart = new System.Windows.Forms.RadioButton();
             this.rbtnOffSetGR = new System.Windows.Forms.RadioButton();
             this.rbtnOffSet = new System.Windows.Forms.RadioButton();
             this.rbtnIntercept = new System.Windows.Forms.RadioButton();
             this.rbtnRMSE = new System.Windows.Forms.RadioButton();
             this.lblRobo = new System.Windows.Forms.Label();
-            this.graphHistogram = new ZedGraph.ZedGraphControl();
             this.label12 = new System.Windows.Forms.Label();
             this.lstTimePoints = new System.Windows.Forms.ListBox();
             this.rbtnTimePoint = new System.Windows.Forms.RadioButton();
@@ -174,10 +168,10 @@ namespace Fit_Growth_Curves
             this.txtMinRange = new System.Windows.Forms.TextBox();
             this.lstGrowthCurves = new System.Windows.Forms.ListBox();
             this.plateMap = new MatrixArrayPlot.PlateHeatMap();
-            this.scaleBarSensitivity = new MatrixArrayPlot.ScaleBar();
-            this.sensitivityArray = new MatrixArrayPlot.ArrayPlot();
             this.toDeletePlateMap = new Fit_Growth_Curves.SelectablePlateMap();
             this.selectablePlateMap1 = new Fit_Growth_Curves.SelectablePlateMap();
+            this.scaleBarSensitivity = new MatrixArrayPlot.ScaleBar();
+            this.sensitivityArray = new MatrixArrayPlot.ArrayPlot();
             this.menuStrip1.SuspendLayout();
             this.tabSensitivityAnalysis.SuspendLayout();
             this.tabPlotGraphic.SuspendLayout();
@@ -338,17 +332,6 @@ namespace Fit_Growth_Curves
             this.lblYAxis.TabIndex = 6;
             this.lblYAxis.Text = "End of OD Range To Fit";
             // 
-            // rbtnSensBiasError
-            // 
-            this.rbtnSensBiasError.AutoSize = true;
-            this.rbtnSensBiasError.Location = new System.Drawing.Point(5, 504);
-            this.rbtnSensBiasError.Name = "rbtnSensBiasError";
-            this.rbtnSensBiasError.Size = new System.Drawing.Size(174, 43);
-            this.rbtnSensBiasError.TabIndex = 5;
-            this.rbtnSensBiasError.Text = "Add a 0.001 bias and  plot \r\ndifferences from original number\r\n(Exponential Fit)";
-            this.rbtnSensBiasError.UseVisualStyleBackColor = true;
-            this.rbtnSensBiasError.CheckedChanged += new System.EventHandler(this.SensitivityCriteriaChanged);
-            // 
             // rbtnSensStartEndLog
             // 
             this.rbtnSensStartEndLog.AutoSize = true;
@@ -391,6 +374,17 @@ namespace Fit_Growth_Curves
             this.lstGrowthRatesSensitivity.Size = new System.Drawing.Size(158, 420);
             this.lstGrowthRatesSensitivity.TabIndex = 0;
             this.lstGrowthRatesSensitivity.SelectedIndexChanged += new System.EventHandler(this.lstGrowthRatesSensitivity_SelectedIndexChanged);
+            // 
+            // rbtnSensBiasError
+            // 
+            this.rbtnSensBiasError.AutoSize = true;
+            this.rbtnSensBiasError.Location = new System.Drawing.Point(5, 504);
+            this.rbtnSensBiasError.Name = "rbtnSensBiasError";
+            this.rbtnSensBiasError.Size = new System.Drawing.Size(174, 43);
+            this.rbtnSensBiasError.TabIndex = 5;
+            this.rbtnSensBiasError.Text = "Add a 0.001 bias and  plot \r\ndifferences from original number\r\n(Exponential Fit)";
+            this.rbtnSensBiasError.UseVisualStyleBackColor = true;
+            this.rbtnSensBiasError.CheckedChanged += new System.EventHandler(this.SensitivityCriteriaChanged);
             // 
             // tabPlotGraphic
             // 
@@ -435,9 +429,6 @@ namespace Fit_Growth_Curves
             this.panel6.Controls.Add(this.rbtnGroupsOffSetGrowthRate);
             this.panel6.Controls.Add(this.rbtnGroupsLinFit);
             this.panel6.Controls.Add(this.rbtnMixtureModelGR);
-            this.panel6.Controls.Add(this.rbtnEndODvMax);
-            this.panel6.Controls.Add(this.rbtnMaxvGrowthRate);
-            this.panel6.Controls.Add(this.rbtnInitialPopvGrowthRate);
             this.panel6.Controls.Add(this.rbtnMakeQQPlot);
             this.panel6.Controls.Add(this.rbtnGroupOffSetMinusStart);
             this.panel6.Controls.Add(this.btnMakeEvoGroups);
@@ -541,36 +532,6 @@ namespace Fit_Growth_Curves
             this.rbtnMixtureModelGR.TabIndex = 220;
             this.rbtnMixtureModelGR.Text = "Robust Growth Rate";
             this.rbtnMixtureModelGR.UseVisualStyleBackColor = true;
-            // 
-            // rbtnEndODvMax
-            // 
-            this.rbtnEndODvMax.AutoSize = true;
-            this.rbtnEndODvMax.Location = new System.Drawing.Point(137, 671);
-            this.rbtnEndODvMax.Name = "rbtnEndODvMax";
-            this.rbtnEndODvMax.Size = new System.Drawing.Size(135, 17);
-            this.rbtnEndODvMax.TabIndex = 219;
-            this.rbtnEndODvMax.Text = "End OD v Growth Rate";
-            this.rbtnEndODvMax.UseVisualStyleBackColor = true;
-            // 
-            // rbtnMaxvGrowthRate
-            // 
-            this.rbtnMaxvGrowthRate.AutoSize = true;
-            this.rbtnMaxvGrowthRate.Location = new System.Drawing.Point(134, 446);
-            this.rbtnMaxvGrowthRate.Name = "rbtnMaxvGrowthRate";
-            this.rbtnMaxvGrowthRate.Size = new System.Drawing.Size(157, 17);
-            this.rbtnMaxvGrowthRate.TabIndex = 218;
-            this.rbtnMaxvGrowthRate.Text = "Plot Max OD v Growth Rate";
-            this.rbtnMaxvGrowthRate.UseVisualStyleBackColor = true;
-            // 
-            // rbtnInitialPopvGrowthRate
-            // 
-            this.rbtnInitialPopvGrowthRate.AutoSize = true;
-            this.rbtnInitialPopvGrowthRate.Location = new System.Drawing.Point(135, 571);
-            this.rbtnInitialPopvGrowthRate.Name = "rbtnInitialPopvGrowthRate";
-            this.rbtnInitialPopvGrowthRate.Size = new System.Drawing.Size(143, 17);
-            this.rbtnInitialPopvGrowthRate.TabIndex = 217;
-            this.rbtnInitialPopvGrowthRate.Text = "Initial Pop v Growth Rate";
-            this.rbtnInitialPopvGrowthRate.UseVisualStyleBackColor = true;
             // 
             // rbtnMakeQQPlot
             // 
@@ -1020,15 +981,12 @@ namespace Fit_Growth_Curves
             // 
             // tabRobo
             // 
-            this.tabRobo.Controls.Add(this.rbtnPlatesLogisticR2);
-            this.tabRobo.Controls.Add(this.rbtnPlatePlotLogistic15);
             this.tabRobo.Controls.Add(this.rbtnPlateOffSetIDMinusStart);
             this.tabRobo.Controls.Add(this.rbtnOffSetGR);
             this.tabRobo.Controls.Add(this.rbtnOffSet);
             this.tabRobo.Controls.Add(this.rbtnIntercept);
             this.tabRobo.Controls.Add(this.rbtnRMSE);
             this.tabRobo.Controls.Add(this.lblRobo);
-            this.tabRobo.Controls.Add(this.graphHistogram);
             this.tabRobo.Controls.Add(this.label12);
             this.tabRobo.Controls.Add(this.plateMap);
             this.tabRobo.Controls.Add(this.lstTimePoints);
@@ -1045,28 +1003,6 @@ namespace Fit_Growth_Curves
             this.tabRobo.TabIndex = 0;
             this.tabRobo.Text = "View Microtiter Plate Data";
             this.tabRobo.UseVisualStyleBackColor = true;
-            // 
-            // rbtnPlatesLogisticR2
-            // 
-            this.rbtnPlatesLogisticR2.AutoSize = true;
-            this.rbtnPlatesLogisticR2.Location = new System.Drawing.Point(630, 594);
-            this.rbtnPlatesLogisticR2.Name = "rbtnPlatesLogisticR2";
-            this.rbtnPlatesLogisticR2.Size = new System.Drawing.Size(99, 17);
-            this.rbtnPlatesLogisticR2.TabIndex = 31;
-            this.rbtnPlatesLogisticR2.Text = "Plot Logistic R2";
-            this.rbtnPlatesLogisticR2.UseVisualStyleBackColor = true;
-            this.rbtnPlatesLogisticR2.CheckedChanged += new System.EventHandler(this.rbtnPlateOptions_CheckedChanged);
-            // 
-            // rbtnPlatePlotLogistic15
-            // 
-            this.rbtnPlatePlotLogistic15.AutoSize = true;
-            this.rbtnPlatePlotLogistic15.Location = new System.Drawing.Point(630, 628);
-            this.rbtnPlatePlotLogistic15.Name = "rbtnPlatePlotLogistic15";
-            this.rbtnPlatePlotLogistic15.Size = new System.Drawing.Size(163, 17);
-            this.rbtnPlatePlotLogistic15.TabIndex = 28;
-            this.rbtnPlatePlotLogistic15.Text = "Plot Logistic Rate at OD 0.15";
-            this.rbtnPlatePlotLogistic15.UseVisualStyleBackColor = true;
-            this.rbtnPlatePlotLogistic15.CheckedChanged += new System.EventHandler(this.rbtnPlateOptions_CheckedChanged);
             // 
             // rbtnPlateOffSetIDMinusStart
             // 
@@ -1130,20 +1066,6 @@ namespace Fit_Growth_Curves
             this.lblRobo.Name = "lblRobo";
             this.lblRobo.Size = new System.Drawing.Size(0, 13);
             this.lblRobo.TabIndex = 18;
-            // 
-            // graphHistogram
-            // 
-            this.graphHistogram.Location = new System.Drawing.Point(660, 3);
-            this.graphHistogram.Name = "graphHistogram";
-            this.graphHistogram.ScrollGrace = 0D;
-            this.graphHistogram.ScrollMaxX = 0D;
-            this.graphHistogram.ScrollMaxY = 0D;
-            this.graphHistogram.ScrollMaxY2 = 0D;
-            this.graphHistogram.ScrollMinX = 0D;
-            this.graphHistogram.ScrollMinY = 0D;
-            this.graphHistogram.ScrollMinY2 = 0D;
-            this.graphHistogram.Size = new System.Drawing.Size(497, 341);
-            this.graphHistogram.TabIndex = 17;
             // 
             // label12
             // 
@@ -1433,6 +1355,7 @@ namespace Fit_Growth_Curves
             this.ChartN.ScrollMinY2 = 0D;
             this.ChartN.Size = new System.Drawing.Size(638, 321);
             this.ChartN.TabIndex = 29;
+            this.ChartN.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ChartN_MouseClick);
             // 
             // l
             // 
@@ -1715,8 +1638,25 @@ namespace Fit_Growth_Curves
             this.plateMap.Name = "plateMap";
             this.plateMap.RoomForText = 25;
             this.plateMap.ShowValues = true;
-            this.plateMap.Size = new System.Drawing.Size(646, 456);
+            this.plateMap.Size = new System.Drawing.Size(852, 518);
             this.plateMap.TabIndex = 20;
+            // 
+            // toDeletePlateMap
+            // 
+            this.toDeletePlateMap.BackColor = System.Drawing.Color.White;
+            this.toDeletePlateMap.CurGroupToSelect = 1;
+            this.toDeletePlateMap.Location = new System.Drawing.Point(452, 27);
+            this.toDeletePlateMap.Name = "toDeletePlateMap";
+            this.toDeletePlateMap.Size = new System.Drawing.Size(524, 397);
+            this.toDeletePlateMap.TabIndex = 13;
+            // 
+            // selectablePlateMap1
+            // 
+            this.selectablePlateMap1.CurGroupToSelect = 1;
+            this.selectablePlateMap1.Location = new System.Drawing.Point(3, 6);
+            this.selectablePlateMap1.Name = "selectablePlateMap1";
+            this.selectablePlateMap1.Size = new System.Drawing.Size(278, 238);
+            this.selectablePlateMap1.TabIndex = 180;
             // 
             // scaleBarSensitivity
             // 
@@ -1738,23 +1678,6 @@ namespace Fit_Growth_Curves
             this.sensitivityArray.ShowValues = true;
             this.sensitivityArray.Size = new System.Drawing.Size(825, 626);
             this.sensitivityArray.TabIndex = 1;
-            // 
-            // toDeletePlateMap
-            // 
-            this.toDeletePlateMap.BackColor = System.Drawing.Color.White;
-            this.toDeletePlateMap.CurGroupToSelect = 1;
-            this.toDeletePlateMap.Location = new System.Drawing.Point(452, 27);
-            this.toDeletePlateMap.Name = "toDeletePlateMap";
-            this.toDeletePlateMap.Size = new System.Drawing.Size(524, 397);
-            this.toDeletePlateMap.TabIndex = 13;
-            // 
-            // selectablePlateMap1
-            // 
-            this.selectablePlateMap1.CurGroupToSelect = 1;
-            this.selectablePlateMap1.Location = new System.Drawing.Point(3, 6);
-            this.selectablePlateMap1.Name = "selectablePlateMap1";
-            this.selectablePlateMap1.Size = new System.Drawing.Size(278, 238);
-            this.selectablePlateMap1.TabIndex = 180;
             // 
             // CurveFitter
             // 
@@ -1839,7 +1762,6 @@ namespace Fit_Growth_Curves
         private System.Windows.Forms.TabPage tabRobo;
         private System.Windows.Forms.RadioButton rbtnRMSE;
         private System.Windows.Forms.Label lblRobo;
-        private ZedGraph.ZedGraphControl graphHistogram;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ListBox lstTimePoints;
         private System.Windows.Forms.RadioButton rbtnTimePoint;
@@ -1882,8 +1804,6 @@ namespace Fit_Growth_Curves
         private System.Windows.Forms.ListBox lstGrowthCurves;
         private System.Windows.Forms.RadioButton rbtnOffSetGR;
         private System.Windows.Forms.RadioButton rbtnPlateOffSetIDMinusStart;
-        private System.Windows.Forms.RadioButton rbtnPlatesLogisticR2;
-        private System.Windows.Forms.RadioButton rbtnPlatePlotLogistic15;
         private System.Windows.Forms.ToolStripMenuItem launchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem open16MinuteFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFileWithNumberedHoursToolStripMenuItem;
@@ -1896,9 +1816,6 @@ namespace Fit_Growth_Curves
         private System.Windows.Forms.RadioButton rbtnGroupsOffSetGrowthRate;
         private System.Windows.Forms.RadioButton rbtnGroupsLinFit;
         private System.Windows.Forms.RadioButton rbtnMixtureModelGR;
-        private System.Windows.Forms.RadioButton rbtnEndODvMax;
-        private System.Windows.Forms.RadioButton rbtnMaxvGrowthRate;
-        private System.Windows.Forms.RadioButton rbtnInitialPopvGrowthRate;
         private System.Windows.Forms.RadioButton rbtnMakeQQPlot;
         private System.Windows.Forms.RadioButton rbtnGroupOffSetMinusStart;
         private System.Windows.Forms.Button btnMakeEvoGroups;

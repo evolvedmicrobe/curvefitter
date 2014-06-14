@@ -29,32 +29,20 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Mono|AnyCPU'">
     <OutputPath>bin\Mono\</OutputPath>
     <DefineConstants>MONO</DefineConstants>
     <DebugType>none</DebugType>
     <WarningLevel>4</WarningLevel>
-    <Optimize>False</Optimize>
+    <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="alglibnet2">
       <HintPath>..\NeededAssemblies\alglibnet2.dll</HintPath>
     </Reference>
-    <Reference Include="MathFunc, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af39242306d6159d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\NeededAssemblies\MathFunc.dll</HintPath>
-    </Reference>
-    <Reference Include="MatrixInterf, Version=2.0.5.0, Culture=neutral, PublicKeyToken=1fa71b5ffec10e32, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\NeededAssemblies\MatrixInterf.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Solver.Foundation">
-      <HintPath>..\NeededAssemblies\Microsoft.Solver.Foundation.DLL</HintPath>
-    </Reference>
-    <Reference Include="ShoOptimizer">
-      <HintPath>..\NeededAssemblies\ShoOptimizer.DLL</HintPath>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Stats">
       <HintPath>..\NeededAssemblies\Stats.dll</HintPath>
@@ -62,7 +50,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,6 +57,18 @@
     <Reference Include="System.Xml" />
     <Reference Include="ShoArray">
       <HintPath>..\NeededAssemblies\ShoArray.dll</HintPath>
+    </Reference>
+    <Reference Include="MathFunc">
+      <HintPath>..\NeededAssemblies\MathFunc.dll</HintPath>
+    </Reference>
+    <Reference Include="MatrixInterf">
+      <HintPath>..\NeededAssemblies\MatrixInterf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Solver.Foundation">
+      <HintPath>..\NeededAssemblies\Microsoft.Solver.Foundation.DLL</HintPath>
+    </Reference>
+    <Reference Include="ShoOptimizer">
+      <HintPath>..\NeededAssemblies\ShoOptimizer.DLL</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,7 @@ using System.Collections;
 using System.Linq;
 using System.Data;
 using System.Collections.ObjectModel;
-using System.Windows;
+//using System.Windows;
 using System.ComponentModel;
 using Microsoft.Win32;
 using System.IO;
@@ -113,8 +113,9 @@ namespace GrowthCurveLibrary
         public MixtureErrorModelClass MixtureErrorModel;
 
         public QuadraticLinearRegression QuadModel;
+         public LogisticModel LogisticModel;
 #endif
-        public LogisticModel LogisticModel;
+
 
         public MaximumGrowthRate MaxGrowthRate;
         private GrowthRateInUse pGrowthRate;
@@ -430,8 +431,10 @@ namespace GrowthCurveLibrary
                         if (ExpFit.Y.Length > 5)
                         {
                            this.OffSetExp = new OffSetExponentialFit(ExpFit.X, ExpFit.Y, this[0].ODValue);
+#if !MONO
                             this.LogisticModel = new LogisticModel(ExpFit.X, ExpFit.Y);
-                        }
+#endif
+                            }
                         else
                         {
                             this.OffSetExp = null;

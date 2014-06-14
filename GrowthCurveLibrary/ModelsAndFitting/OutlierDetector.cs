@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.SolverFoundation;
+//using Microsoft.SolverFoundation;
 using ShoNS.Optimizer;
 using ShoNS.Numerics;
 using ShoNS.Array;

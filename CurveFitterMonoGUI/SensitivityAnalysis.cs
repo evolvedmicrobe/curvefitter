@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using ShoNS.Visualization;
-using ShoNS.Array;
-using ShoNS.MathFunc;
 using GrowthCurveLibrary;
 
 namespace Fit_Growth_Curves
 {
     class SensitivityAnalysis
     {
-
-        
         List<Measurement> Measurements;
         GrowthCurve GD;
         HashSet<double> AllFitValues = new HashSet<double>();

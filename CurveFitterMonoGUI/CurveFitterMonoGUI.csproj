@@ -9,8 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CurveFitterMonoGUI</RootNamespace>
     <AssemblyName>CurveFitterMonoGUI</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,28 +38,23 @@
     <OutputPath>bin\Mono\</OutputPath>
     <DefineConstants>TRACE;DEBUG;MONO</DefineConstants>
     <Optimize>true</Optimize>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MathFunc, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af39242306d6159d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\NeededAssemblies\MathFunc.dll</HintPath>
-    </Reference>
-    <Reference Include="ShoArray, Version=2.0.5.0, Culture=neutral, PublicKeyToken=1635376d5e62ab5f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\NeededAssemblies\ShoArray.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="ZedGraph">
       <HintPath>..\NeededAssemblies\ZedGraph.DLL</HintPath>
+    </Reference>
+    <Reference Include="MathFunc">
+      <HintPath>..\NeededAssemblies\MathFunc.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +85,7 @@
       <DependentUpon>CurveFitter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectablePlateMap.resx" />
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -97,16 +96,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GrowthCurveLibrary\GrowthCurveLibrary.csproj">
-      <Project>{baa4f5f2-edca-4cf4-96d4-d076abda1459}</Project>
-      <Name>GrowthCurveLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MatrixArrayPlot\MatrixArrayPlot\MatrixArrayPlot.csproj">
-      <Project>{186de3c8-1c26-4c97-9c83-9f5c74a8860c}</Project>
-      <Name>MatrixArrayPlot</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -115,4 +104,14 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <ProjectReference Include="..\GrowthCurveLibrary\GrowthCurveLibrary.csproj">
+      <Project>{BAA4F5F2-EDCA-4CF4-96D4-D076ABDA1459}</Project>
+      <Name>GrowthCurveLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MatrixArrayPlot\MatrixArrayPlot\MatrixArrayPlot.csproj">
+      <Project>{186DE3C8-1C26-4C97-9C83-9F5C74A8860C}</Project>
+      <Name>MatrixArrayPlot</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
