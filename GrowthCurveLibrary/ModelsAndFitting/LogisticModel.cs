@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+#if !MONO
 using ShoNS.Optimizer;
 using ShoNS.Numerics;
 
@@ -215,3 +216,4 @@ namespace GrowthCurveLibrary
         }
     }
 }
+#endif

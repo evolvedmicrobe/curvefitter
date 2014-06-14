@@ -632,7 +632,7 @@ namespace GrowthCurveLibrary
         /// </summary>
         /// <param name="FullFileName"></param>
         /// <returns></returns>
-        public static List<GrowthCurve> GetDataFromCSV(string FullFileName)
+        public static List<GrowthCurve> GetDataFromCSV(string FullFileName, char sep =',')
         {
             DateTime StartTime = new DateTime();
             
@@ -644,10 +644,10 @@ namespace GrowthCurveLibrary
             List<string> titles = new List<string>();// = new string[1];//holds all the titles
             List<double[]> absDATA = new List<double[]>();// = new double[1, 1];
             List<DateTime> acTimeValues = new List<DateTime>();// = new DateTime[1];//time values as a datetime
-
+            int lineNumber=1;
             //get titles
             line = SR.ReadLine();
-            string[] splitit = line.Trim().Split(',');//title should be of the form #Time, Data1,Data2,Data3;
+            string[] splitit = line.Trim().Split(new char[] {sep},StringSplitOptions.RemoveEmptyEntries);//title should be of the form #Time, Data1,Data2,Data3;
             int NumSamples = splitit.Length;
             if (String.IsNullOrEmpty(splitit[splitit.Length - 1]))
             {
@@ -659,14 +659,28 @@ namespace GrowthCurveLibrary
             //reset values for matrices
             while ((line = SR.ReadLine()) != null && line.Length > 0 && !(line.StartsWith(",,")))
             {
+                lineNumber++;
                 double[] data = new double[NumSamples];
-                splitit = line.Split(',');
-
+                splitit = line.Split( new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
+                if (splitit.Length != NumSamples)
+                {
+                    throw new Exception("The number of samples names did not match the number of values present on line: " + lineNumber.ToString());
+                }
                 acTimeValues.Add(StartTime.AddHours(Convert.ToDouble(splitit[0])));//add the time value
-
-                for (int i = 1; i < NumSamples; i++)//was -1
-                { data[i - 1] = Convert.ToDouble(splitit[i]); }//add datetime
-                absDATA.Add(data);
+                
+                    for (int i = 1; i < NumSamples; i++)//was -1
+                    {
+                        try
+                        {
+                        data[i - 1] = Convert.ToDouble(splitit[i]);
+                        }
+                        catch(FormatException e)
+                        {
+                            throw new Exception("Could not convert value to double: "+splitit[i]+" on line: "+lineNumber.ToString());
+                        }
+                    }//add datetime
+                    absDATA.Add(data);
+                
             }
             SR.Close();
             for (int i = 0; i < titles.Count; i++)
