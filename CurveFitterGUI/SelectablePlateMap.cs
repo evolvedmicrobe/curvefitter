@@ -65,7 +65,7 @@ namespace Fit_Growth_Curves
             InitializeComponent();
             InitializeLayout();
         }
-        protected void OnInidividualWellChanged(int Well,int GroupAssignedTo)
+        protected void OnIndividualWellChanged(int Well,int GroupAssignedTo)
         {
             RecreateImage();
             if (IndividualWellChanged != null)
@@ -118,7 +118,7 @@ namespace Fit_Growth_Curves
                 else
                 { FutureAssignment = pCurGroupToSelect; }
                 CurWellAssignment[well]=FutureAssignment;
-                OnInidividualWellChanged(selectedWell.Value,FutureAssignment); 
+                OnIndividualWellChanged(selectedWell.Value,FutureAssignment); 
             }            
             base.OnClick(e);
         }

@@ -40,7 +40,6 @@ namespace Fit_Growth_Curves
         }
         internal override void makeSquares()
         {
-
             Graphics g = Graphics.FromImage(TheColoredSquaresBM);
             g.Clear(System.Drawing.Color.White);
             SolidBrush BlackBrush = new SolidBrush(Color.Black);

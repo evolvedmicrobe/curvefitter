@@ -1,0 +1,6 @@
+You need visual studio 2010
+
+Copy the relevant files into the CurveFitter Directory in "\InstallCurveFitter\CurveFitter"
+
+
+Then build the InstalCurveFitterSolution.

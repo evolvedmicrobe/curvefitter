@@ -151,15 +151,7 @@ namespace Fit_Growth_Curves
             lstGrowthRatesSensitivity.Items.Add(GR.ToString());
         }
         #endregion
-        private void tempLoad()
-        {
-            string fname = @"C:\Users\Nigel\Documents\My Dropbox\Media_Paper\Fitter_Manuscript\Experiments\ReproducibilityAndPlateType\ND_CoStar_17\\" + ImportRobotData.NameofTempFile ;
-            ImportDateTimeCSV.FillCurveCollectionFromCSV(fname, GCC);
-            GCCChangeEvent();
-            btnDeleteFirstBlank_Click(null, null);
-            btnDeleteFirstBlank.PerformClick();
-            //btnCallOutliers.PerformClick();
-        }
+       
         private void Form1_Load(object sender, EventArgs e)
         {
             DirectoryInfo DI=new DirectoryInfo(System.Environment.CurrentDirectory);
@@ -187,12 +179,18 @@ namespace Fit_Growth_Curves
             ChartN.ZoomEvent+=new ZedGraphControl.ZoomEventHandler(ChartN_ZoomEvent);
             ChartPickData.ZoomEvent+=new ZedGraphControl.ZoomEventHandler(ChartPickData_ZoomEvent);
         }
-        private void GetData(string FullFileName)
+
+        private void AddGrowthCurves(IEnumerable<GrowthCurve> data)
         {
-            ImportDateTimeCSV.FillCurveCollectionFromCSV(FullFileName, GCC);
+            GCC.SendDataToGrowthCurve(data);
+            GCCChangeEvent();
+        }
+        private void GetData(string FullFileName, bool useNumericCSV)
+        {
+             
             //first to create an array of values, I know there will be 48 columns in the second one,
             //and for now I am going to assume we will have 200 datapoints, which we will not!
-            GCCChangeEvent();
+            
         }
         private void FillDataGrid(GrowthCurve GR)
         {
@@ -477,29 +475,10 @@ namespace Fit_Growth_Curves
                 
             }
         }
-        private void SelectFileToOpen()
-        {
-            
-            ClearLists();
-            GCC.Clear();
-            openFileDialog1.Title = "Select the file with Growth Curve Data";
-            openFileDialog1.Filter = "CSV Files | *.csv|All Files | *.csv";
-            openFileDialog1.ShowDialog();
-            if (openFileDialog1.FileName.Length > 0)
-            {
-                this.Cursor = Cursors.WaitCursor;
-                this.Text = "Curve Fitter - " + openFileDialog1.FileName;
-                try { GetData(openFileDialog1.FileName); }
-                catch (Exception thrown) { MessageBox.Show("Could not open the file, please check the format \n Also, make sure it is not open by another program\n\n  Error: " + thrown.Message); }
-            }
-            else { MessageBox.Show("You must pick a file"); }//this.Close(); }
-            this.Cursor = Cursors.Default;
-            
-
-        }
+      
         private void MenuOpenFile_Click(object sender, EventArgs e)
         {
-            SelectFileToOpen();
+            SelectFileToOpen(OpenFileOption.DateTimeCSV);
         }
         private void btnChangeAxis_Click(object sender, EventArgs e)
         {
@@ -1023,8 +1002,8 @@ namespace Fit_Growth_Curves
                 if (DR == DialogResult.OK)
                 {
                     ImportRobotData.GetExcelData(folderBrowserDialog1.SelectedPath);
-                    ImportDateTimeCSV.FillCurveCollectionFromCSV(folderBrowserDialog1.SelectedPath + "\\" + ImportRobotData.NameofTempFile,GCC);
-                   
+                    var data = ImportDelimitedDataFile.ImportDateTimeCSV(folderBrowserDialog1.SelectedPath + "\\" + ImportRobotData.NameofTempFile);
+                    GCC.SendDataToGrowthCurve(data);
                     this.Text = "Growth Curve " + folderBrowserDialog1.SelectedPath;
                     Properties.Settings.Default.LastSelectedPath = folderBrowserDialog1.SelectedPath;
                 }
@@ -1524,33 +1503,15 @@ namespace Fit_Growth_Curves
             notePad.Start();
         }
 
-        private void open16MinuteFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ClearLists();
-            GCC.Clear();
-            openFileDialog1.Title = "Select the file with Growth Curve Data";
-            openFileDialog1.Filter = "CSV Files | *.csv|All Files | *.csv";
-            openFileDialog1.ShowDialog();
-            if (openFileDialog1.FileName.Length > 0)
-            {
-                this.Cursor = Cursors.WaitCursor;
-                this.Text = "Curve Fitter - " + openFileDialog1.FileName;
-                try 
-                {
-                    
-                    var GCC2 = Import16MinuteFile.ImportFile(openFileDialog1.FileName);
-                    GCC.Clear();
-                    GCC.AddRange(GCC2);
-                    GCCChangeEvent();
-                }
-                catch (Exception thrown) { MessageBox.Show("Could not open the file, please check the format \n Also, make sure it is not open by another program\n\n  Error: " + thrown.Message); }
-            }
-            else { MessageBox.Show("You must pick a file"); }//this.Close(); }
-            this.Cursor = Cursors.Default;
-        }
+
+        enum OpenFileOption { TabNumber, DateTimeCSV, NumericCSV }
 
         private void openFileWithNumberedHoursToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SelectFileToOpen(OpenFileOption.NumericCSV);  
+        }
+        private void SelectFileToOpen(OpenFileOption opts)
+        {
             ClearLists();
             GCC.Clear();
             openFileDialog1.Title = "Select the file with Growth Curve Data";
@@ -1560,41 +1521,35 @@ namespace Fit_Growth_Curves
             {
                 this.Cursor = Cursors.WaitCursor;
                 this.Text = "Curve Fitter - " + openFileDialog1.FileName;
-                try 
+                try
                 {
-
-                    ImportNumericTimeCSV.FillCurveCollectionFromCSV(openFileDialog1.FileName, GCC);
-                    GCCChangeEvent();
-                     
+                    List<GrowthCurve> data = null;
+                    switch (opts)
+                    {
+                        case OpenFileOption.DateTimeCSV:
+                            data = ImportDelimitedDataFile.ImportDateTimeCSV(openFileDialog1.FileName);
+                            break;
+                        case OpenFileOption.NumericCSV:
+                            data = ImportDelimitedDataFile.ImportNumericTimeCSV(openFileDialog1.FileName);
+                            break;
+                        case OpenFileOption.TabNumber:
+                            data = ImportDelimitedDataFile.ImportNumericTimeTabDelimited(openFileDialog1.FileName);
+                            break;
+                    }
+                    AddGrowthCurves(data);
                 }
-                catch (Exception thrown) { MessageBox.Show("Could not open the file, please check the format \n Also, make sure it is not open by another program\n\n  Error: " + thrown.Message); }
+                catch (Exception thrown) { MessageBox.Show("Could not open the file, please check the format. Also, make sure it is not open by another program.\nError: " + thrown.Message); }
             }
-            else { MessageBox.Show("You must pick a file"); }//this.Close(); }
+            else { MessageBox.Show("You must pick a file."); }//this.Close(); }
             this.Cursor = Cursors.Default;
+
+
         }
 
-        private void label22_Click(object sender, EventArgs e)
+        private void openTabDelimitedWithNumberedHoursToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            SelectFileToOpen(OpenFileOption.TabNumber);
         }
-
-       
-
-
-
-
-
-     
-
-
-
-
-       
-
-
-
-        
-
 
     }
 }

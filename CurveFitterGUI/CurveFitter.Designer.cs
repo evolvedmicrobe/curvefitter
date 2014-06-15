@@ -37,11 +37,11 @@ namespace Fit_Growth_Curves
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuOpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileWithNumberedHoursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openTabDelimitedWithNumberedHoursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importPreviousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openDirectoryWithExcelDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importPlateKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.open16MinuteFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openDirectoryWithExcelDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alternativeExportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportRawDataForMatlabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.launchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,7 +109,6 @@ namespace Fit_Growth_Curves
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.selectablePlateMap1 = new Fit_Growth_Curves.SelectablePlateMap();
             this.plotTreatments = new ZedGraph.ZedGraphControl();
             this.tabBlankRemoval = new System.Windows.Forms.TabPage();
             this.btnSubtractWrittenBlank = new System.Windows.Forms.Button();
@@ -119,7 +118,6 @@ namespace Fit_Growth_Curves
             this.btnDeleteAvg3asBlank = new System.Windows.Forms.Button();
             this.btnDelete2ndPoint = new System.Windows.Forms.Button();
             this.btnDeleteFirstBlank = new System.Windows.Forms.Button();
-            this.toDeletePlateMap = new Fit_Growth_Curves.SelectablePlateMap();
             this.tabRobo = new System.Windows.Forms.TabPage();
             this.rbtnPlatesLogisticR2 = new System.Windows.Forms.RadioButton();
             this.rbtnPlateQuadR2 = new System.Windows.Forms.RadioButton();
@@ -206,8 +204,9 @@ namespace Fit_Growth_Curves
             this.lblBlah = new System.Windows.Forms.Label();
             this.plotGroupModeling = new ZedGraph.ZedGraphControl();
             this.lstGroupModelGroups = new System.Windows.Forms.ListBox();
+            this.toDeletePlateMap = new Fit_Growth_Curves.SelectablePlateMap();
+            this.selectablePlateMap1 = new Fit_Growth_Curves.SelectablePlateMap();
             this.selectPlatesForGroupModel = new Fit_Growth_Curves.SelectablePlateMap();
-            this.openTabDelimitedWithNumberedHoursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabSensitivityAnalysis.SuspendLayout();
             this.tabPlotGraphic.SuspendLayout();
@@ -255,12 +254,11 @@ namespace Fit_Growth_Curves
             this.openFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuOpenFile,
             this.openFileWithNumberedHoursToolStripMenuItem,
-            this.exportDataToolStripMenuItem1,
+            this.openTabDelimitedWithNumberedHoursToolStripMenuItem,
             this.importPreviousToolStripMenuItem,
-            this.openDirectoryWithExcelDataToolStripMenuItem,
             this.importPlateKeyToolStripMenuItem,
-            this.open16MinuteFileToolStripMenuItem,
-            this.openTabDelimitedWithNumberedHoursToolStripMenuItem});
+            this.exportDataToolStripMenuItem1,
+            this.openDirectoryWithExcelDataToolStripMenuItem});
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
             this.openFileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.openFileToolStripMenuItem.Text = "File";
@@ -269,22 +267,22 @@ namespace Fit_Growth_Curves
             // 
             this.MenuOpenFile.Name = "MenuOpenFile";
             this.MenuOpenFile.Size = new System.Drawing.Size(301, 22);
-            this.MenuOpenFile.Text = "Open File with Date/Times";
+            this.MenuOpenFile.Text = "Open CSV File with Date/Times";
             this.MenuOpenFile.Click += new System.EventHandler(this.MenuOpenFile_Click);
             // 
             // openFileWithNumberedHoursToolStripMenuItem
             // 
             this.openFileWithNumberedHoursToolStripMenuItem.Name = "openFileWithNumberedHoursToolStripMenuItem";
             this.openFileWithNumberedHoursToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
-            this.openFileWithNumberedHoursToolStripMenuItem.Text = "Open File with Numbered Hours";
+            this.openFileWithNumberedHoursToolStripMenuItem.Text = "Open CSV File with Numbered Hours";
             this.openFileWithNumberedHoursToolStripMenuItem.Click += new System.EventHandler(this.openFileWithNumberedHoursToolStripMenuItem_Click);
             // 
-            // exportDataToolStripMenuItem1
+            // openTabDelimitedWithNumberedHoursToolStripMenuItem
             // 
-            this.exportDataToolStripMenuItem1.Name = "exportDataToolStripMenuItem1";
-            this.exportDataToolStripMenuItem1.Size = new System.Drawing.Size(301, 22);
-            this.exportDataToolStripMenuItem1.Text = "Export Data";
-            this.exportDataToolStripMenuItem1.Click += new System.EventHandler(this.exportDataToolStripMenuItem1_Click);
+            this.openTabDelimitedWithNumberedHoursToolStripMenuItem.Name = "openTabDelimitedWithNumberedHoursToolStripMenuItem";
+            this.openTabDelimitedWithNumberedHoursToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
+            this.openTabDelimitedWithNumberedHoursToolStripMenuItem.Text = "Open Tab Delimited with Numbered Hours";
+            this.openTabDelimitedWithNumberedHoursToolStripMenuItem.Click += new System.EventHandler(this.openTabDelimitedWithNumberedHoursToolStripMenuItem_Click);
             // 
             // importPreviousToolStripMenuItem
             // 
@@ -293,13 +291,6 @@ namespace Fit_Growth_Curves
             this.importPreviousToolStripMenuItem.Text = "Import Previous";
             this.importPreviousToolStripMenuItem.Click += new System.EventHandler(this.importPreviousToolStripMenuItem_Click);
             // 
-            // openDirectoryWithExcelDataToolStripMenuItem
-            // 
-            this.openDirectoryWithExcelDataToolStripMenuItem.Name = "openDirectoryWithExcelDataToolStripMenuItem";
-            this.openDirectoryWithExcelDataToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
-            this.openDirectoryWithExcelDataToolStripMenuItem.Text = "Open Directory with Excel Data";
-            this.openDirectoryWithExcelDataToolStripMenuItem.Click += new System.EventHandler(this.openDirectoryWithExcelDataToolStripMenuItem_Click);
-            // 
             // importPlateKeyToolStripMenuItem
             // 
             this.importPlateKeyToolStripMenuItem.Name = "importPlateKeyToolStripMenuItem";
@@ -307,12 +298,19 @@ namespace Fit_Growth_Curves
             this.importPlateKeyToolStripMenuItem.Text = "Import Plate Key";
             this.importPlateKeyToolStripMenuItem.Click += new System.EventHandler(this.importPlateKeyToolStripMenuItem_Click);
             // 
-            // open16MinuteFileToolStripMenuItem
+            // exportDataToolStripMenuItem1
             // 
-            this.open16MinuteFileToolStripMenuItem.Name = "open16MinuteFileToolStripMenuItem";
-            this.open16MinuteFileToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
-            this.open16MinuteFileToolStripMenuItem.Text = "Open 16 Minute File";
-            this.open16MinuteFileToolStripMenuItem.Click += new System.EventHandler(this.open16MinuteFileToolStripMenuItem_Click);
+            this.exportDataToolStripMenuItem1.Name = "exportDataToolStripMenuItem1";
+            this.exportDataToolStripMenuItem1.Size = new System.Drawing.Size(301, 22);
+            this.exportDataToolStripMenuItem1.Text = "Export Data";
+            this.exportDataToolStripMenuItem1.Click += new System.EventHandler(this.exportDataToolStripMenuItem1_Click);
+            // 
+            // openDirectoryWithExcelDataToolStripMenuItem
+            // 
+            this.openDirectoryWithExcelDataToolStripMenuItem.Name = "openDirectoryWithExcelDataToolStripMenuItem";
+            this.openDirectoryWithExcelDataToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
+            this.openDirectoryWithExcelDataToolStripMenuItem.Text = "Open Directory with Excel Data";
+            this.openDirectoryWithExcelDataToolStripMenuItem.Click += new System.EventHandler(this.openDirectoryWithExcelDataToolStripMenuItem_Click);
             // 
             // alternativeExportsToolStripMenuItem
             // 
@@ -1057,15 +1055,6 @@ namespace Fit_Growth_Curves
             this.label14.TabIndex = 80;
             this.label14.Text = "Name Treatment 1";
             // 
-            // selectablePlateMap1
-            // 
-            this.selectablePlateMap1.CurGroupToSelect = 1;
-            this.selectablePlateMap1.Location = new System.Drawing.Point(3, 5);
-            this.selectablePlateMap1.Name = "selectablePlateMap1";
-            this.selectablePlateMap1.Size = new System.Drawing.Size(278, 238);
-            this.selectablePlateMap1.TabIndex = 77;
-            this.selectablePlateMap1.GroupsChanged += new Fit_Growth_Curves.SelectablePlateMap.ChangedEventHandler(this.selectablePlateMap1_GroupsChanged_1);
-            // 
             // plotTreatments
             // 
             this.plotTreatments.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1166,15 +1155,6 @@ namespace Fit_Growth_Curves
             this.btnDeleteFirstBlank.Text = "Delete First Data Point in Each Well As Blank";
             this.btnDeleteFirstBlank.UseVisualStyleBackColor = true;
             this.btnDeleteFirstBlank.Click += new System.EventHandler(this.btnDeleteFirstBlank_Click);
-            // 
-            // toDeletePlateMap
-            // 
-            this.toDeletePlateMap.BackColor = System.Drawing.Color.White;
-            this.toDeletePlateMap.CurGroupToSelect = 1;
-            this.toDeletePlateMap.Location = new System.Drawing.Point(452, 27);
-            this.toDeletePlateMap.Name = "toDeletePlateMap";
-            this.toDeletePlateMap.Size = new System.Drawing.Size(524, 397);
-            this.toDeletePlateMap.TabIndex = 13;
             // 
             // tabRobo
             // 
@@ -2050,7 +2030,6 @@ namespace Fit_Growth_Curves
             this.label22.Text = "Warning, this tab should only be used by \r\nadvanced users.  The more complicated\r" +
     "\nmodels it implements can usually avoided\r\nby altering the instrument settings o" +
     "r replacing \r\nthe lamp.";
-            this.label22.Click += new System.EventHandler(this.label22_Click);
             // 
             // rbtnGMRMSEDif
             // 
@@ -2199,6 +2178,24 @@ namespace Fit_Growth_Curves
             this.lstGroupModelGroups.TabIndex = 90;
             this.lstGroupModelGroups.SelectedIndexChanged += new System.EventHandler(this.lstGroupModelGroups_SelectedIndexChanged);
             // 
+            // toDeletePlateMap
+            // 
+            this.toDeletePlateMap.BackColor = System.Drawing.Color.White;
+            this.toDeletePlateMap.CurGroupToSelect = 1;
+            this.toDeletePlateMap.Location = new System.Drawing.Point(452, 27);
+            this.toDeletePlateMap.Name = "toDeletePlateMap";
+            this.toDeletePlateMap.Size = new System.Drawing.Size(524, 397);
+            this.toDeletePlateMap.TabIndex = 13;
+            // 
+            // selectablePlateMap1
+            // 
+            this.selectablePlateMap1.CurGroupToSelect = 1;
+            this.selectablePlateMap1.Location = new System.Drawing.Point(3, 5);
+            this.selectablePlateMap1.Name = "selectablePlateMap1";
+            this.selectablePlateMap1.Size = new System.Drawing.Size(278, 238);
+            this.selectablePlateMap1.TabIndex = 77;
+            this.selectablePlateMap1.GroupsChanged += new Fit_Growth_Curves.SelectablePlateMap.ChangedEventHandler(this.selectablePlateMap1_GroupsChanged_1);
+            // 
             // selectPlatesForGroupModel
             // 
             this.selectPlatesForGroupModel.CurGroupToSelect = 1;
@@ -2207,12 +2204,6 @@ namespace Fit_Growth_Curves
             this.selectPlatesForGroupModel.Size = new System.Drawing.Size(294, 181);
             this.selectPlatesForGroupModel.TabIndex = 78;
             this.selectPlatesForGroupModel.GroupsChanged += new Fit_Growth_Curves.SelectablePlateMap.ChangedEventHandler(this.selectPlatesForGroupModel_GroupsChanged);
-            // 
-            // openTabDelimitedWithNumberedHoursToolStripMenuItem
-            // 
-            this.openTabDelimitedWithNumberedHoursToolStripMenuItem.Name = "openTabDelimitedWithNumberedHoursToolStripMenuItem";
-            this.openTabDelimitedWithNumberedHoursToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
-            this.openTabDelimitedWithNumberedHoursToolStripMenuItem.Text = "Open Tab Delimited with Numbered Hours";
             // 
             // CurveFitter
             // 
@@ -2447,7 +2438,6 @@ namespace Fit_Growth_Curves
         private System.Windows.Forms.RadioButton rbtnPlotQuadraticRate;
         private System.Windows.Forms.RadioButton rbtnPlatePlotLogistic15;
         private System.Windows.Forms.ToolStripMenuItem launchToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem open16MinuteFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFileWithNumberedHoursToolStripMenuItem;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ToolStripMenuItem openTabDelimitedWithNumberedHoursToolStripMenuItem;

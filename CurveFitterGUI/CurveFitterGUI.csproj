@@ -76,6 +76,92 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="alglibnet2, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\alglibnet2.dll</HintPath>
+    </Reference>
+    <Reference Include="DlmIO, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b1f04c18ec875148, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\DlmIO.dll</HintPath>
+    </Reference>
+    <Reference Include="EmbeddedSho, Version=2.0.5.27, Culture=neutral, PublicKeyToken=314a316d4cfb815d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\EmbeddedSho.dll</HintPath>
+    </Reference>
+    <Reference Include="ipy">
+      <HintPath>..\NeededAssemblies\ipy.exe</HintPath>
+    </Reference>
+    <Reference Include="IronPython, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\IronPython.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Modules, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\IronPython.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\NeededAssemblies\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Metadata, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\Microsoft.Scripting.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Solver.Foundation, Version=3.0.1.10599, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\Microsoft.Solver.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Vbe.Interop, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\NeededAssemblies\Microsoft.Vbe.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="office, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\NeededAssemblies\office.dll</HintPath>
+    </Reference>
+    <Reference Include="PythonExt, Version=2.0.5.27, Culture=neutral, PublicKeyToken=f5389a9189cccc85, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\PythonExt.dll</HintPath>
+    </Reference>
+    <Reference Include="Rand, Version=2.0.5.0, Culture=neutral, PublicKeyToken=af26ffbb175a1abe, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\Rand.dll</HintPath>
+    </Reference>
+    <Reference Include="ShoConsole32, Version=2.0.5.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\ShoConsole32.exe</HintPath>
+    </Reference>
+    <Reference Include="ShoDB, Version=2.0.5.0, Culture=neutral, PublicKeyToken=44bfc57d893eaf85, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\ShoDB.dll</HintPath>
+    </Reference>
+    <Reference Include="ShoOptimizer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=f50b651b412bbdba, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\ShoOptimizer.dll</HintPath>
+    </Reference>
+    <Reference Include="ShoPickleHelper, Version=2.0.5.27, Culture=neutral, PublicKeyToken=bfb3ad4f5710911f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\ShoPickleHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="shopy, Version=2.0.5.27, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\shopy.exe</HintPath>
+    </Reference>
+    <Reference Include="ShoViz, Version=2.0.5.0, Culture=neutral, PublicKeyToken=14eb30934789ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\ShoViz.dll</HintPath>
+    </Reference>
+    <Reference Include="Stats, Version=2.1.0.0, Culture=neutral, PublicKeyToken=8484a3462be9f788, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\Stats.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -97,6 +183,10 @@
     </Reference>
     <Reference Include="Microsoft.Dynamic">
       <HintPath>..\NeededAssemblies\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="utils, Version=2.0.5.0, Culture=neutral, PublicKeyToken=f71603a15f22664a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NeededAssemblies\utils.dll</HintPath>
     </Reference>
     <Reference Include="ZedGraph">
       <HintPath>..\NeededAssemblies\ZedGraph.DLL</HintPath>
@@ -288,13 +378,13 @@
   </Target>
   -->
   <ItemGroup>
+    <ProjectReference Include="..\GrowthCurveLibrary\GrowthCurveLibrary.csproj">
+      <Project>{baa4f5f2-edca-4cf4-96d4-d076abda1459}</Project>
+      <Name>GrowthCurveLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MatrixArrayPlot\MatrixArrayPlot\MatrixArrayPlot.csproj">
       <Project>{186DE3C8-1C26-4C97-9C83-9F5C74A8860C}</Project>
       <Name>MatrixArrayPlot</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GrowthCurveLibrary\GrowthCurveLibrary.csproj">
-      <Project>{BAA4F5F2-EDCA-4CF4-96D4-D076ABDA1459}</Project>
-      <Name>GrowthCurveLibrary</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

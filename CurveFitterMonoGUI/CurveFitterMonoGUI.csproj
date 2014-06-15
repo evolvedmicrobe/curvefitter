@@ -10,7 +10,7 @@
     <RootNamespace>CurveFitterMonoGUI</RootNamespace>
     <AssemblyName>CurveFitterMonoGUI</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Mono2|AnyCPU'">
