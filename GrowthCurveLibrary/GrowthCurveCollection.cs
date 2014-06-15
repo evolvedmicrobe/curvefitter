@@ -79,6 +79,10 @@ namespace GrowthCurveLibrary
                 Add(GC);               
             }          
         }
+        public void SendDataToGrowthCurve(IEnumerable<GrowthCurve> curves)
+        {
+            AddRange(curves);
+        }
         public void RemoveDataPointsAsBlanks(bool useFirst=true)
         {
             List<GrowthCurve> data = this.ToList();

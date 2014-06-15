@@ -14,87 +14,88 @@ using System.Linq;
 
 namespace GrowthCurveLibrary
 {
-    public class ImportRobotData
-    {
-        static List<double[]> absDATA;
-        static int plateSize = 96;
-        static int ColNumber = 12;
-        static List<string> IntToWell;//96 well version of int to name
-        static List<double> timeValues;//time values as a double
-        static List<DateTime> acTimeValues;//time values as a datetime
-        static string Directory;
-        /// <summary>
-        /// Name of flat file exported by excel
-        /// </summary>
-        public static string NameofTempFile = "CondensedForCurveFitter.csv";
-        public static void ChangeTo48WellPlates()
-        {
-            plateSize=48;
-            ColNumber=8;
-        }
-        public static void GetTextData(string FileLocations)
-        {
-            //ChangeTo48WellPlates();
-            //SetIntToWell();
-            string error = "";
-            //first to create an array of values, I know there will be 48 columns in the second one,
-            //and for now I am going to assume we will have 200 datapoints, which we will not!
-            Directory = FileLocations;
-            timeValues = new List<double>();
-            acTimeValues = new List<DateTime>();
-            absDATA = new List<double[]>();//must initialize this to the plate size
-            DirectoryInfo DI = new DirectoryInfo(FileLocations);
-            foreach (FileInfo FI in DI.GetFiles())
-            {
-                if (FI.Extension == ".txt")
-                {
-                    StreamReader SR;
-                    try
-                    {
-                        SR = new StreamReader(FI.FullName);
-                        SR.ReadLine();//skip the first line
-                        string line;
-                        double[] newData = new double[plateSize];
-                        for (int i = 0; i < plateSize; i++)
-                        {
-                            line = SR.ReadLine();
-                            string[] splitit = line.Split('\t');
+	public class ImportRobotData
+	{
+		static List<double[]> absDATA;
+		static int plateSize = 96;
+		static int ColNumber = 12;
+		static List<string> IntToWell;
+
+		//96 well version of int to name
+		/// <summary>
+		/// The time values as a double.
+		/// </summary>
+		static List<double> timeValues;
+		/// <summary>
+		/// The time values as an actual Date/Time
+		/// </summary>
+		static List<DateTime> acTimeValues;
+		static string Directory;
+		/// <summary>
+		/// Name of flat file exported by excel
+		/// </summary>
+		public static string NameofTempFile = "CondensedForCurveFitter.csv";
+
+		public static void ChangeTo48WellPlates ()
+		{
+			plateSize = 48;
+			ColNumber = 8;
+		}
+
+		public static void GetTextData (string FileLocations)
+		{
+			//ChangeTo48WellPlates();
+			//SetIntToWell();
+			string error = "";
+			//first to create an array of values, I know there will be 48 columns in the second one,
+			//and for now I am going to assume we will have 200 datapoints, which we will not!
+			Directory = FileLocations;
+			timeValues = new List<double> ();
+			acTimeValues = new List<DateTime> ();
+			absDATA = new List<double[]> ();//must initialize this to the plate size
+			DirectoryInfo DI = new DirectoryInfo (FileLocations);
+			foreach (FileInfo FI in DI.GetFiles()) {
+				if (FI.Extension == ".txt") {
+					StreamReader SR = null;
+					try {
+						SR = new StreamReader (FI.FullName);
+						SR.ReadLine ();//skip the first line
+						string line;
+						double[] newData = new double[plateSize];
+						for (int i = 0; i < plateSize; i++) {
+							line = SR.ReadLine ();
+							string[] splitit = line.Split ('\t');
                             
-                            newData[i] = Convert.ToDouble(splitit[5]);
-                        }
-                        absDATA.Add(newData);
-                        //Now we should be on row 49, but the date/time data is on row 101 in the form below
-                        //Measured on ....................... 3/26/2007 6:20:39 PM
-                        bool Timefound = false;
-                        string timeline = "";
-                        while (!Timefound)
-                        {
-                            line = SR.ReadLine();
-                            if (line.StartsWith("Measured on"))
-                            {
-                                timeline = line.Remove(0, 36);
-                                Timefound = true;
-                            }
-                        }
-                        error = timeline;
-                        DateTime TIME = Convert.ToDateTime(timeline);
-                        error = TIME.ToString();
-                        acTimeValues.Add(TIME);
-                    }
-                    catch (Exception thrown)
-                    {
-                        if(SR!=null)
-                        {
-                            SR.Dispose();
-                        }
-                        Exception ex = new Exception("File " + FI.Name + " is screwed" + thrown.Message);
-                        throw ex;
-                    }
-                }
-            }
-            exportData();
-        }
-#if !MONO
+							newData [i] = Convert.ToDouble (splitit [5]);
+						}
+						absDATA.Add (newData);
+						//Now we should be on row 49, but the date/time data is on row 101 in the form below
+						//Measured on ....................... 3/26/2007 6:20:39 PM
+						bool Timefound = false;
+						string timeline = "";
+						while (!Timefound) {
+							line = SR.ReadLine ();
+							if (line.StartsWith ("Measured on")) {
+								timeline = line.Remove (0, 36);
+								Timefound = true;
+							}
+						}
+						error = timeline;
+						DateTime TIME = Convert.ToDateTime (timeline);
+						error = TIME.ToString ();
+						acTimeValues.Add (TIME);
+					} catch (Exception thrown) {
+						if (SR != null) {
+							SR.Dispose ();
+						}
+						Exception ex = new Exception ("File " + FI.Name + " is screwed" + thrown.Message);
+						throw ex;
+					}
+				}
+			}
+			exportData ();
+		}
+		#if !MONO
         /// <summary>
         /// Converts a directory of excel data into a flat text csv file
         /// </summary>
@@ -294,396 +295,319 @@ namespace GrowthCurveLibrary
                 }
             }
         }
+
 #else
-        //public static void GetExcelDataNoCom(string FileLocation)
-        //{
-        //    //ChangeTo48WellPlates();
-        //    // SetIntToWell();
-        //    //first to create an array of values, I know there will be 48 columns in the second one,
-        //    //and for now I am going to assume we will have 200 datapoints, which we will not!
-        //    Directory = FileLocation;
-        //    acTimeValues = new List<DateTime>();
-        //    absDATA = new List<double[]>();//must initialize this to the plate size
-        //    DirectoryInfo DI = new DirectoryInfo(FileLocation);
-        //    try
-        //    {
-        //        foreach (FileInfo FI in DI.GetFiles())
-        //        {
-        //            if (FI.Extension == ".xls")
-        //            {
+		//public static void GetExcelDataNoCom(string FileLocation)
+		//{
+		//    //ChangeTo48WellPlates();
+		//    // SetIntToWell();
+		//    //first to create an array of values, I know there will be 48 columns in the second one,
+		//    //and for now I am going to assume we will have 200 datapoints, which we will not!
+		//    Directory = FileLocation;
+		//    acTimeValues = new List<DateTime>();
+		//    absDATA = new List<double[]>();//must initialize this to the plate size
+		//    DirectoryInfo DI = new DirectoryInfo(FileLocation);
+		//    try
+		//    {
+		//        foreach (FileInfo FI in DI.GetFiles())
+		//        {
+		//            if (FI.Extension == ".xls")
+		//            {
                         
-        //                var FO=File.OpenRead(FI.FullName);
-        //                Workbook workBook = Workbook.Load(FO);
-        //                Worksheet sheet = (Worksheet)workBook.Worksheets[1];
-        //                int numRows = sheet.Cells.LastRowIndex;
-        //                int plateSize = numRows;
-        //                double[] newData = new double[plateSize];
-        //                for (int rowIndex = sheet.Cells.FirstRowIndex; rowIndex < numRows; rowIndex++)
-        //                {
-        //                    Row r = sheet.Cells.GetRow(rowIndex);
-        //                    var Cell = r.GetCell(5);
-        //                    double value = (double)Cell.Value;
-        //                    newData[rowIndex] = value;
-        //                }
-        //                absDATA.Add(newData);
-        //                ///NEW CODE ADDED BELOW
-        //                string timeline = "";
-        //                sheet = (Worksheet)workBook.Worksheets[3];
-        //                numRows = sheet.Cells.LastRowIndex;
-        //                DateTime testTime = DateTime.Now;
-        //                DateTime TIME = testTime;
-        //                for (int rowIndex = sheet.Cells.FirstRowIndex; rowIndex < numRows; rowIndex++)
-        //                {
-        //                    Row r = sheet.Cells.GetRow(rowIndex);
+		//                var FO=File.OpenRead(FI.FullName);
+		//                Workbook workBook = Workbook.Load(FO);
+		//                Worksheet sheet = (Worksheet)workBook.Worksheets[1];
+		//                int numRows = sheet.Cells.LastRowIndex;
+		//                int plateSize = numRows;
+		//                double[] newData = new double[plateSize];
+		//                for (int rowIndex = sheet.Cells.FirstRowIndex; rowIndex < numRows; rowIndex++)
+		//                {
+		//                    Row r = sheet.Cells.GetRow(rowIndex);
+		//                    var Cell = r.GetCell(5);
+		//                    double value = (double)Cell.Value;
+		//                    newData[rowIndex] = value;
+		//                }
+		//                absDATA.Add(newData);
+		//                ///NEW CODE ADDED BELOW
+		//                string timeline = "";
+		//                sheet = (Worksheet)workBook.Worksheets[3];
+		//                numRows = sheet.Cells.LastRowIndex;
+		//                DateTime testTime = DateTime.Now;
+		//                DateTime TIME = testTime;
+		//                for (int rowIndex = sheet.Cells.FirstRowIndex; rowIndex < numRows; rowIndex++)
+		//                {
+		//                    Row r = sheet.Cells.GetRow(rowIndex);
 
-        //                    timeline = (string)r.GetCell(0).Value.ToString();
-        //                    if (timeline != null && timeline.StartsWith("Measured on ..."))
-        //                    {
-        //                        timeline = timeline.Remove(0, 36);
-        //                        TIME = Convert.ToDateTime(timeline);
-        //                        break;
-        //                    }
-        //                }
-        //                if (TIME == testTime) throw new Exception("No time found in file");
-        //                acTimeValues.Add(TIME);
+		//                    timeline = (string)r.GetCell(0).Value.ToString();
+		//                    if (timeline != null && timeline.StartsWith("Measured on ..."))
+		//                    {
+		//                        timeline = timeline.Remove(0, 36);
+		//                        TIME = Convert.ToDateTime(timeline);
+		//                        break;
+		//                    }
+		//                }
+		//                if (TIME == testTime) throw new Exception("No time found in file");
+		//                acTimeValues.Add(TIME);
 
-        //            }
-        //        }
-        //        exportData();
-        //    }
-        //    catch (Exception thrown)
-        //    {
-        //        //Exception ex = new Exception("File " + FI.Name + " is screwed" ,thrown);
-        //        //throw ex;
-        //        throw thrown;
-        //    }
+		//            }
+		//        }
+		//        exportData();
+		//    }
+		//    catch (Exception thrown)
+		//    {
+		//        //Exception ex = new Exception("File " + FI.Name + " is screwed" ,thrown);
+		//        //throw ex;
+		//        throw thrown;
+		//    }
 
-        //}
+		//}
 #endif
-        private static void SetIntToWell()
-        {
-            IntToWell = new List<string>(plateSize);
-            string Rows = "ABCDEFGH";
-            for (int i = 0; i < plateSize; i++)
-            {
-                int ColPos = (i % ColNumber) + 1;
-                int RowPos = Convert.ToInt32((i / ColNumber));
-                string toSet = Rows[RowPos] + ColPos.ToString();
-                IntToWell.Add(toSet);
-            }
-        }
-        private static void exportData()
-        {
-            StreamWriter SW = new StreamWriter(Directory+"\\" + NameofTempFile);
-            SW.Write("Time,");
-            string nextline = "";
-            for (int i = 0; i < plateSize; i++)
-            {
-                nextline += IntToWell[i] + ",";
-            }
-            nextline = nextline.Trim(',');
-            SW.Write(nextline + "\n");
-            for (int i = 0; i < acTimeValues.Count; i++)
-            {
-                SW.Write(acTimeValues[i].ToString() + ",");
-                string lastline = "";
-                for (int j = 0; j < plateSize; j++)
-                {
-                    lastline += absDATA[i][j].ToString() + ",";
-                }
-                lastline = lastline.TrimEnd(',');
-                SW.Write(lastline + "\n");
-            }
-            SW.Close();
-            absDATA = null;
-            acTimeValues = null;
-        }
-        private static void exportVenusData()
-        {
-            StreamWriter SW = new StreamWriter(Directory + "\\" +"Venus_"+ NameofTempFile);
-            SW.Write("Time,");
-            string nextline = "";
-            for (int i = 0; i < plateSize; i++)
-            {
-                nextline += IntToWell[i] + ",";
-            }
-            nextline = nextline.Trim(',');
-            SW.Write(nextline + "\n");
-            for (int i = 0; i < acTimeValues.Count; i++)
-            {
-                SW.Write(acTimeValues[i].ToString() + ",");
-                string lastline = "";
-                for (int j = 0; j < plateSize; j++)
-                {
-                    lastline += absDATA[i][j].ToString() + ",";
-                }
-                lastline = lastline.TrimEnd(',');
-                SW.Write(lastline + "\n");
-            }
-            SW.Close();
-            absDATA = null;
-            acTimeValues = null;
-        }
-    }
-    /// <summary>
-    /// Loads a file previously unloaded by the curve fitter
-    /// </summary>
-    public class ImportPreviousFile
-    {
-        public static GrowthCurveCollection importPreviousDataFile(string file)
-        {
-            StreamReader SR = new StreamReader(file);
-            GrowthCurveCollection GCC = new GrowthCurveCollection();
+		private static void SetIntToWell ()
+		{
+			IntToWell = new List<string> (plateSize);
+			string Rows = "ABCDEFGH";
+			for (int i = 0; i < plateSize; i++) {
+				int ColPos = (i % ColNumber) + 1;
+				int RowPos = Convert.ToInt32 ((i / ColNumber));
+				string toSet = Rows [RowPos] + ColPos.ToString ();
+				IntToWell.Add (toSet);
+			}
+		}
 
-            //drop two header lines
-            SR.ReadLine();
-            //SR.ReadLine();
-            string line = "";
-            List<string> FitSummaryLines = new List<string>();
-            while ((line = SR.ReadLine()) != null)
-            {
-                if (!line.StartsWith("Complete Data Listing Below"))
-                { FitSummaryLines.Add(line); }
-                else { break; }
-            }
-            //now to grab the more important data
-            List<string[]> CompleteDataListing = new List<string[]>();
-            SR.ReadLine();//blow through headerline
-            while ((line = SR.ReadLine()) != null)
-            {
-                if (line.Length > 3)
-                {
-                    CompleteDataListing.Add(line.Split(','));
-                }
-            }
-            //now to add the datetimes to the file
-            DateTime[] AllDateTimes = new DateTime[CompleteDataListing.Count];
-            for (int i = 0; i < CompleteDataListing.Count; i++)
-            {
-                AllDateTimes[i] = (Convert.ToDateTime(CompleteDataListing[i][0]));
-            }
-            //now to convert this into something useful 
-            for (int i = 0; i < FitSummaryLines.Count; i++)
-            {
-                List<DateTime> DateTimeArray = new List<DateTime>();
-                List<double> ODValuesArray = new List<double>();
+		private static void exportData ()
+		{
+			StreamWriter SW = new StreamWriter (Directory + "\\" + NameofTempFile);
+			SW.Write ("Time,");
+			string nextline = "";
+			for (int i = 0; i < plateSize; i++) {
+				nextline += IntToWell [i] + ",";
+			}
+			nextline = nextline.Trim (',');
+			SW.Write (nextline + "\n");
+			for (int i = 0; i < acTimeValues.Count; i++) {
+				SW.Write (acTimeValues [i].ToString () + ",");
+				string lastline = "";
+				for (int j = 0; j < plateSize; j++) {
+					lastline += absDATA [i] [j].ToString () + ",";
+				}
+				lastline = lastline.TrimEnd (',');
+				SW.Write (lastline + "\n");
+			}
+			SW.Close ();
+			absDATA = null;
+			acTimeValues = null;
+		}
 
-                string name = (string)FitSummaryLines[i];
-                name = name.Split(',')[0];
-                string notes = (string)FitSummaryLines[i];
-                notes = notes.Split(',')[9];
-                int dataposition = 1 + i * 2;
-                int indexPos = 0;
-                List<int> IndexesToFit = new List<int>();
-                for (int j = 0; j < CompleteDataListing.Count; j++)
+		private static void exportVenusData ()
+		{
+			StreamWriter SW = new StreamWriter (Directory + "\\" + "Venus_" + NameofTempFile);
+			SW.Write ("Time,");
+			string nextline = "";
+			for (int i = 0; i < plateSize; i++) {
+				nextline += IntToWell [i] + ",";
+			}
+			nextline = nextline.Trim (',');
+			SW.Write (nextline + "\n");
+			for (int i = 0; i < acTimeValues.Count; i++) {
+				SW.Write (acTimeValues [i].ToString () + ",");
+				string lastline = "";
+				for (int j = 0; j < plateSize; j++) {
+					lastline += absDATA [i] [j].ToString () + ",";
+				}
+				lastline = lastline.TrimEnd (',');
+				SW.Write (lastline + "\n");
+			}
+			SW.Close ();
+			absDATA = null;
+			acTimeValues = null;
+		}
+	}
+
+	/// <summary>
+	/// Loads a file previously unloaded by the curve fitter
+	/// </summary>
+	public class ImportPreviousFile
+	{
+		public static GrowthCurveCollection importPreviousDataFile (string file)
+		{
+			StreamReader SR = new StreamReader (file);
+			GrowthCurveCollection GCC = new GrowthCurveCollection ();
+
+			//drop header lines
+			SR.ReadLine ();
+			string line = "";
+			List<string> FitSummaryLines = new List<string> ();
+			while ((line = SR.ReadLine ()) != null) {
+				if (!line.StartsWith ("Complete Data Listing Below")) {
+					FitSummaryLines.Add (line);
+				} else {
+					break;
+				}
+			}
+			//now to grab the more important data
+			List<string[]> CompleteDataListing = new List<string[]> ();
+			SR.ReadLine ();//blow through headerline
+			while ((line = SR.ReadLine ()) != null) {
+				if (line.Length > 3) {
+					CompleteDataListing.Add (line.Split (','));
+				}
+			}
+			//now to add the datetimes to the file
+			DateTime[] AllDateTimes = new DateTime[CompleteDataListing.Count];
+			for (int i = 0; i < CompleteDataListing.Count; i++) {
+				AllDateTimes [i] = (Convert.ToDateTime (CompleteDataListing [i] [0]));
+			}
+			//now to convert this into something useful 
+			for (int i = 0; i < FitSummaryLines.Count; i++) {
+				List<DateTime> DateTimeArray = new List<DateTime> ();
+				List<double> ODValuesArray = new List<double> ();
+
+				string name = (string)FitSummaryLines [i];
+				name = name.Split (',') [0];
+				string notes = (string)FitSummaryLines [i];
+				notes = notes.Split (',') [9];
+				int dataposition = 1 + i * 2;
+				int indexPos = 0;
+				List<int> IndexesToFit = new List<int> ();
+				for (int j = 0; j < CompleteDataListing.Count; j++) {
+					if ((CompleteDataListing [j] as string[]) [dataposition] != "-999") {
+						DateTimeArray.Add (Convert.ToDateTime (CompleteDataListing [j] [0]));
+						ODValuesArray.Add (Convert.ToDouble (CompleteDataListing [j] [dataposition]));
+						int flag = Convert.ToInt32 (CompleteDataListing [j] [dataposition + 1]);
+						if (flag == 0) {
+							IndexesToFit.Add (indexPos);
+						}
+						indexPos++;
+					}
+				}
+				DateTime[] Times = DateTimeArray.ToArray ();
+				double[] ODvalues = ODValuesArray.ToArray ();
+				GrowthCurve GD = new GrowthCurve (name, Times, ODvalues);
+				GD.SetFittedRangeFromIndexes (IndexesToFit);
+				GCC.Add (GD);
+			}
+			return GCC;
+		}
+	}
+
+
+    public class ImportDelimitedDataFile
+    {     
+        /// <summary>
+        /// Returns a list of growth curves from a csv file.
+        /// </summary>
+        /// <param name="FullFileName"></param>
+        /// <returns></returns>
+        internal static List<GrowthCurve> GetDataFromDelimited(string FullFileName, char separator, bool NumericTimes)
+        {
+            DateTime StartTime = new DateTime();            
+			
+            List<GrowthCurve> toReturn = null;
+            //first to create an array of values, I know there will be 48 columns in the second one,
+            //and for now I am going to assume we will have 200 datapoints, which we will not!
+            if(!File.Exists(FullFileName)) {
+                throw new FileNotFoundException("Could not find file: "+FullFileName);
+            }
+            var sep = new char[] { separator };
+            using (StreamReader SR = new StreamReader(FullFileName))
+            {
+                string badLine = separator.ToString() + separator.ToString();
+                List<double[]> absDATA = new List<double[]>();// = new double[1, 1];
+                List<DateTime> acTimeValues = new List<DateTime>();// = new DateTime[1];//time values as a datetime
+                var lines = File.ReadAllLines(FullFileName).TakeWhile(x=>!x.StartsWith(badLine)).ToArray();
+                if (lines.Length < 2)
                 {
-                    if ((CompleteDataListing[j] as string[])[dataposition] != "-999")
+                    throw new FileLoadException("Could not read more than 2 data lines from file: " + FullFileName);
+                }
+                //get titles                
+                //title should be of the form #Time, Data1,Data2,Data3;
+                List<string> titles = lines[0].Trim().Split(sep,StringSplitOptions.RemoveEmptyEntries).Skip(1).ToList();
+                int NumSamples = titles.Count;            
+                //Now get OD Data
+                int currentLine =2;
+                foreach(var line in lines.Skip(1))
+                {
+                    var splitit = line.Split(sep,StringSplitOptions.RemoveEmptyEntries);
+                    double[] data = new double[NumSamples];
+                    DateTime timeReading=StartTime;
+                    if (NumericTimes)
                     {
-                        DateTimeArray.Add(Convert.ToDateTime(CompleteDataListing[j][0]));
-                        ODValuesArray.Add(Convert.ToDouble(CompleteDataListing[j][dataposition]));
-                        int flag = Convert.ToInt32(CompleteDataListing[j][dataposition + 1]);
-                        if (flag == 0)
-                        {
-                            IndexesToFit.Add(indexPos);
+                        try { timeReading = StartTime.AddHours(Convert.ToDouble(splitit[0])); }
+                        catch(Exception thrown) {
+                            throwFormatException(splitit[0], currentLine, 0, " Hour (double)", thrown);
                         }
-                        indexPos++;
                     }
-                }
-                DateTime[] Times = DateTimeArray.ToArray();
-                double[] ODvalues = ODValuesArray.ToArray();
-                GrowthCurve GD = new GrowthCurve(name, Times, ODvalues);
-                GD.SetFittedRangeFromIndexes(IndexesToFit);
-                GCC.Add(GD);
-            }
-            return GCC;
-        }
-    }
-    public class Import16MinuteFile
-    {
-        public static GrowthCurveCollection ImportFile(string file)
-        {
-            //first to create an array of values, I know there will be 48 columns in the second one,
-            //and for now I am going to assume we will have 200 datapoints, which we will not!
-            GrowthCurveCollection GCC = new GrowthCurveCollection();
-            StreamReader SR = new StreamReader(file);
-            DateTime[] times = null ;
-            string line;
-            //reset values for matrices
-            while ((line = SR.ReadLine()) != null && line.Length > 0 && !(line.StartsWith(",,")))
-            {
-                string[] splitit = line.Split(',');
-                int N = splitit.Length;
-                if (splitit[N - 1] == "")
-                    N = N - 1;
-                if (times == null)
-                {
-                    times = new DateTime[N-1];
-                    DateTime ctime = DateTime.Now;
-                    for (int i = 0; i < (N-1); i++)
+                    else
                     {
-                        ctime = ctime.AddMinutes(16);
-                        times[i] = ctime;
+                        try { timeReading = Convert.ToDateTime(splitit[0]); }
+                        catch(Exception thrown) {
+                            throwFormatException(splitit[0], currentLine, 0, " DateTime", thrown);
+                        }
                     }
+                    acTimeValues.Add(timeReading);//add the time value
+                    for (int i = 1; i < splitit.Length; i++)
+                    {
+                        try
+                        {
+                            data[i - 1] = Convert.ToDouble(splitit[i]);
+                        }
+                        catch (Exception thrown)
+                        {
+                            throwFormatException(splitit[i], currentLine, i, " numeric", thrown);
+                         }
+                    }
+                    absDATA.Add(data);
+                    currentLine++;
                 }
-                string name = splitit[0];
-                double[] data=new double[N-1];
-                for (int i = 1; i < splitit.Length; i++)//was -1
-                { data[i - 1] = Convert.ToDouble(splitit[i]); }//add datetime
-                GrowthCurve gc = new GrowthCurve(name, times, data);
-                GCC.Add(gc);
-            }
-            return GCC;
+                //deep copy arrays.
+                toReturn = Enumerable.Range(0,titles.Count).Select(
+                                            x=>new GrowthCurve(titles[x],acTimeValues.ToArray(),absDATA.Select(z => z[x]).ToArray())
+                                            ).ToList();
+            }        
+            return toReturn;
         }
-    }
 
-    public class ImportDateTimeCSV
-    {
+        private static void throwFormatException(string failedString, int line, int column, string toType, Exception inner) {
+            string msg = "Failed to convert data: '"+failedString+"' on line "+line.ToString()+", column "+column.ToString()+", to type "+toType+"\r\n"
+                +"Is your computer set to a location that is not the United States?  This can cause formatting problems for the parser.";
+            throw new FormatException(msg, inner);
+        }
         /// <summary>
-        /// Fills a growth curve collection with the data in a CSV file
-        /// </summary>
-        /// <param name="FullFileName"></param>
-        /// <param name="toFill"></param>
-        public static void FillCurveCollectionFromCSV(string FullFileName,GrowthCurveCollection toFill)
-        {
-            //first to create an array of values, I know there will be 48 columns in the second one,
-            //and for now I am going to assume we will have 200 datapoints, which we will not!
-            StreamReader SR = new StreamReader(FullFileName);
-            string line;
-            List<string> titles = new List<string>();// = new string[1];//holds all the titles
-            List<double[]> absDATA = new List<double[]>();// = new double[1, 1];
-            List<DateTime> acTimeValues=new List<DateTime>();// = new DateTime[1];//time values as a datetime
-            
-            //get titles
-            line = SR.ReadLine();
-            string[] splitit = line.Trim().Split(',');//title should be of the form #Time, Data1,Data2,Data3;
-            int NumSamples = splitit.Length;
-            for (int i = 1; i < splitit.Length; i++)
-            { titles.Add(splitit[i]); }//add title names
-
-            //reset values for matrices
-            while ((line = SR.ReadLine()) != null && line.Length > 0 && !(line.StartsWith(",,")))
-            {
-                double[] data = new double[NumSamples];
-                splitit = line.Split(',');
-                acTimeValues.Add(Convert.ToDateTime(splitit[0]));//add the time value
-                for (int i = 1; i < splitit.Length; i++)//was -1
-                { data[i - 1] = Convert.ToDouble(splitit[i]); }//add datetime
-                absDATA.Add(data);
-            }
-            SR.Close();
-            toFill.SendDataToGrowthCurve(absDATA, acTimeValues, titles);
-        }
+		/// Returns a list of growth curves from a csv file.
+		/// </summary>
+		/// <param name="FullFileName"></param>
+		/// <returns></returns>
+        public static List<GrowthCurve> ImportDateTimeCSV(string FullFileName)
+		{
+            return GetDataFromDelimited(FullFileName, ',',false);
+		}
         /// <summary>
         /// Returns a list of growth curves from a csv file.
         /// </summary>
         /// <param name="FullFileName"></param>
         /// <returns></returns>
-        public static List<GrowthCurve> GetDataFromCSV(string FullFileName)
+        public static List<GrowthCurve> ImportNumericTimeCSV(string FullFileName)
         {
-            List<GrowthCurve> toReturn = new List<GrowthCurve>();
-            //first to create an array of values, I know there will be 48 columns in the second one,
-            //and for now I am going to assume we will have 200 datapoints, which we will not!
-            StreamReader SR = new StreamReader(FullFileName);
-            string line;
-            List<string> titles = new List<string>();// = new string[1];//holds all the titles
-            List<double[]> absDATA = new List<double[]>();// = new double[1, 1];
-            List<DateTime> acTimeValues = new List<DateTime>();// = new DateTime[1];//time values as a datetime
-
-            //get titles
-            line = SR.ReadLine();
-            string[] splitit = line.Trim().Split(',');//title should be of the form #Time, Data1,Data2,Data3;
-            int NumSamples = splitit.Length;
-            for (int i = 1; i < splitit.Length; i++)
-            { titles.Add(splitit[i]); }//add title names
-
-            //reset values for matrices
-            while ((line = SR.ReadLine()) != null && line.Length > 0 && !(line.StartsWith(",,")))
-            {
-                double[] data = new double[NumSamples];
-                splitit = line.Split(',');
-                acTimeValues.Add(Convert.ToDateTime(splitit[0]));//add the time value
-                for (int i = 1; i < splitit.Length; i++)//was -1
-                { data[i - 1] = Convert.ToDouble(splitit[i]); }//add datetime
-                absDATA.Add(data);
-            }
-            SR.Close();
-            for (int i = 0; i < titles.Count; i++)
-            {
-
-                double[] ODDATA = absDATA.Select(x => x[i]).ToArray();
-                GrowthCurve GC = new GrowthCurve(titles[i], acTimeValues.ToArray(), ODDATA);
-                toReturn.Add(GC);
-            }
-            return toReturn;
-            //toFill.SendDataToGrowthCurve(absDATA, acTimeValues, titles);
-        }
-    }
-
-    public class ImportNumericTimeCSV
-    {
-        /// <summary>
-        /// Fills a growth curve collection with the data in a CSV file
-        /// </summary>
-        /// <param name="FullFileName"></param>
-        /// <param name="toFill"></param>
-        public static void FillCurveCollectionFromCSV(string FullFileName, GrowthCurveCollection toFill)
-        {
-            List<GrowthCurve> data = GetDataFromCSV(FullFileName);
-            toFill.AddRange(data);
+            return GetDataFromDelimited(FullFileName, ',', true);
         }
         /// <summary>
-        /// Returns a list of growth curves from a csv file.
+        /// Returns a list of growth curves from a tab delimited file.
         /// </summary>
         /// <param name="FullFileName"></param>
         /// <returns></returns>
-        public static List<GrowthCurve> GetDataFromCSV(string FullFileName)
+        public static List<GrowthCurve> ImportDateTimeTabDelimited(string FullFileName)
         {
-            DateTime StartTime = new DateTime();
-            
-            List<GrowthCurve> toReturn = new List<GrowthCurve>();
-            //first to create an array of values, I know there will be 48 columns in the second one,
-            //and for now I am going to assume we will have 200 datapoints, which we will not!
-            StreamReader SR = new StreamReader(FullFileName);
-            string line;
-            List<string> titles = new List<string>();// = new string[1];//holds all the titles
-            List<double[]> absDATA = new List<double[]>();// = new double[1, 1];
-            List<DateTime> acTimeValues = new List<DateTime>();// = new DateTime[1];//time values as a datetime
-
-            //get titles
-            line = SR.ReadLine();
-            string[] splitit = line.Trim().Split(',');//title should be of the form #Time, Data1,Data2,Data3;
-            int NumSamples = splitit.Length;
-            if (String.IsNullOrEmpty(splitit[splitit.Length - 1]))
-            {
-                NumSamples -= 1;
-            }
-            for (int i = 1; i < NumSamples; i++)
-            { titles.Add(splitit[i]); }//add title names
-
-            //reset values for matrices
-            while ((line = SR.ReadLine()) != null && line.Length > 0 && !(line.StartsWith(",,")))
-            {
-                double[] data = new double[NumSamples];
-                splitit = line.Split(',');
-
-                acTimeValues.Add(StartTime.AddHours(Convert.ToDouble(splitit[0])));//add the time value
-
-                for (int i = 1; i < NumSamples; i++)//was -1
-                { data[i - 1] = Convert.ToDouble(splitit[i]); }//add datetime
-                absDATA.Add(data);
-            }
-            SR.Close();
-            for (int i = 0; i < titles.Count; i++)
-            {
-
-                double[] ODDATA = absDATA.Select(x => x[i]).ToArray();
-                GrowthCurve GC = new GrowthCurve(titles[i], acTimeValues.ToArray(), ODDATA);
-                toReturn.Add(GC);
-            }
-            return toReturn;
-            //toFill.SendDataToGrowthCurve(absDATA, acTimeValues, titles);
+            return GetDataFromDelimited(FullFileName, '\t', false);
+        }
+        /// <summary>
+        /// Returns a list of growth curves from a tab delimited file.
+        /// </summary>
+        /// <param name="FullFileName"></param>
+        /// <returns></returns>
+        public static List<GrowthCurve> ImportNumericTimeTabDelimited(string FullFileName)
+        {
+            return GetDataFromDelimited(FullFileName, '\t', true);
         }
     }
-
 }
->>>>>>> d4b3b6ea42a998d07873e8992656e5b823ef9e11
+	

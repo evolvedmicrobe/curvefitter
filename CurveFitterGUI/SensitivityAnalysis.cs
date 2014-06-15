@@ -10,9 +10,7 @@ using GrowthCurveLibrary;
 namespace Fit_Growth_Curves
 {
     class SensitivityAnalysis
-    {
-
-        
+    {        
         List<Measurement> Measurements;
         GrowthCurve GD;
         HashSet<double> AllFitValues = new HashSet<double>();
