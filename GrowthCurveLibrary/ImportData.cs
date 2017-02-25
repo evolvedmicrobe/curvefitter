@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.IO;
 #if !MONO
@@ -492,7 +493,8 @@ namespace GrowthCurveLibrary
 
 
     public class ImportDelimitedDataFile
-    {     
+    {
+        static CultureInfo americanCulture = new CultureInfo("en-US");
         /// <summary>
         /// Returns a list of growth curves from a csv file.
         /// </summary>
@@ -506,7 +508,7 @@ namespace GrowthCurveLibrary
             //first to create an array of values, I know there will be 48 columns in the second one,
             //and for now I am going to assume we will have 200 datapoints, which we will not!
             if(!File.Exists(FullFileName)) {
-                throw new FileNotFoundException("Could not find file: "+FullFileName);
+                throw new FileNotFoundException("Could not find file: " + FullFileName);
             }
             var sep = new char[] { separator };
             using (StreamReader SR = new StreamReader(FullFileName))
@@ -539,7 +541,19 @@ namespace GrowthCurveLibrary
                     }
                     else
                     {
-                        try { timeReading = Convert.ToDateTime(splitit[0]); }
+                        try {
+                            // Try converting using whatever culture we have, failing that try US culture.
+                            bool converted = DateTime.TryParse(splitit[0], out timeReading);
+                            if(!converted)
+                            {
+                                converted = DateTime.TryParse(splitit[0], americanCulture, DateTimeStyles.None, out timeReading);
+                                if(!converted)
+                                {
+                                    // Fail, throw the error.
+                                    timeReading = Convert.ToDateTime(splitit[0]);
+                                }
+                            }
+                        }
                         catch(Exception thrown) {
                             throwFormatException(splitit[0], currentLine, 0, " DateTime", thrown);
                         }
