@@ -8,7 +8,7 @@ A program that allows you to fit a growth curve using a simple GUI or an advance
 
 **Installation**: You can download the main installer [here](http://www.evolvedmicrobe.com/CurveFitter/Installers/InstallCurveFitter.msi).
 
-An pre-release version is also available which contains a fix for a bug with some non-English languages [here](htp://www.evolvedmicrobe.com/CurveFitter/Installers/InstallCurveFitter.msi)
+An pre-release version is also available which contains a fix for a bug with some non-English languages [here](http://www.evolvedmicrobe.com/CurveFitter/Installers/InstallCurveFitter.msi)
 
 
 ![Growth Curve Image](Documentation/GrowthPlots.png?raw=true "Growth Plots")
